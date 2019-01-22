@@ -6,6 +6,7 @@ namespace VirtualPets
 {
     public class VirtualPets
     {
+                
         // Info
         public string Name { get; set; }
         public string Breed { get; set; }
@@ -18,6 +19,16 @@ namespace VirtualPets
         public int Hunger { get; set; }
         public int Happiness { get; set; }
         public int Boredom { get; set; }
+
+        public VirtualPets()
+        {
+            // Set Stats
+            Health = 100;
+            Hunger = 0;
+            Happiness = 100;
+            Boredom = 0;
+
+        }
 
         public void CreatePet()
         {
@@ -35,16 +46,26 @@ namespace VirtualPets
             Console.WriteLine("What color is your pet");
             Color = Console.ReadLine();
 
-            // Set Stats
-            Health = 100;
-            Hunger = 100;
-            Happiness = 100;
-            Boredom = 0;
                                           
         }
 
+        public void DisplayPetInfo()
+        {
+            Console.WriteLine("\nName: " + Name);
+            Console.WriteLine("Breed: " + Breed);
+            Console.WriteLine("Age: " + Age);
+            Console.WriteLine("Color: " + Color + "\n");
+        }
 
+        public void DisplayPetStats()
+        {
+            Console.WriteLine("\nHealth: " + Health);
+            Console.WriteLine("Hunger: " + Hunger);
+            Console.WriteLine("Happiness: " + Happiness);
+            Console.WriteLine("Boredom: " + Boredom + "\n");
+        }
 
+        
     }
 
 }

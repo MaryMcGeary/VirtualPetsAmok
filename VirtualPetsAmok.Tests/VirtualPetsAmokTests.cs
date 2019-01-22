@@ -48,10 +48,10 @@ namespace VirtualPets.Tests
             VirtualPets pet = new VirtualPets();
 
             // Act
-            pet.Hunger = 100;
+            pet.Hunger = 50;
 
             // Assert
-            Assert.Equal(100, pet.Hunger);
+            Assert.Equal(50, pet.Hunger);
         }
 
         [Fact]
