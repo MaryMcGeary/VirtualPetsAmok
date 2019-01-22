@@ -5,8 +5,7 @@ using System.Text;
 namespace VirtualPets
 {
     public class VirtualPets
-    {
-                
+    {  
         // Info
         public string Name { get; set; }
         public string Breed { get; set; }
@@ -14,12 +13,12 @@ namespace VirtualPets
         public string Color { get; set; }
 
         // Stats
-
         public int Health { get; set; }
         public int Hunger { get; set; }
         public int Happiness { get; set; }
         public int Boredom { get; set; }
 
+        // Construct to set stats
         public VirtualPets()
         {
             // Set Stats
@@ -27,12 +26,10 @@ namespace VirtualPets
             Hunger = 0;
             Happiness = 100;
             Boredom = 0;
-
         }
 
         public void CreatePet()
         {
-
             // Get info
             Console.WriteLine("\nWhat is your pet's name?");
             Name = Console.ReadLine();
