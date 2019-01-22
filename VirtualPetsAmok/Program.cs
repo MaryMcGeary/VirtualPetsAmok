@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VirtualPetsAmok
+namespace VirtualPets
 {
     class Program
     {
