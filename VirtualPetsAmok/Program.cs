@@ -10,19 +10,14 @@ namespace VirtualPetsAmok
             Console.WriteLine("Welcome to Virtual Pets Amok!");
             Console.WriteLine("Press 0 to Quit");
 
-            int menuChoice = Convert.ToInt32(Console.ReadLine());
+            string menuChoice = Console.ReadLine();
 
-            if (menuChoice.Equals(0))
+            if (menuChoice.Equals("0"))
             {
                 Console.WriteLine("See you next time, friend.");
                 return;
             }
             
-            
-
-
-            
-
         }
     }
 }
