@@ -17,9 +17,12 @@ namespace VirtualPets
                 Console.WriteLine("Press 1 to Create a Pet");
                 Console.WriteLine("Press 2 to Display Pet Information");
                 Console.WriteLine("Press 3 to Display Pet Stats");
+                Console.WriteLine("Press 4 to interact with pet");
                 Console.WriteLine("Press 0 to Quit");
 
                 string menuChoice = Console.ReadLine();
+
+                pet.TimeEffect();
 
                 switch (menuChoice)
                 {
@@ -29,7 +32,7 @@ namespace VirtualPets
                         break;
 
                     case "1":
-                        Console.WriteLine("\nIt's time to create your first pet");
+                        Console.WriteLine("\nIt's time to create your first pet.");
                         pet.CreatePet();
                         break;
                     case "2":
@@ -40,7 +43,10 @@ namespace VirtualPets
                         Console.WriteLine("\nPet Stats:");
                         pet.DisplayPetStats();
                         break;
-
+                    case "4":
+                        Console.WriteLine("\nInteraction Menu:");
+                        InteractionMenu(pet);
+                        break;
                     default:
                         Console.WriteLine("\nIncorrect entry. Try again.");
                         break;
@@ -48,6 +54,40 @@ namespace VirtualPets
             } while (run);
         }
 
-        
+        static void InteractionMenu(VirtualPet pet)
+        {           
+
+            bool run = true;
+            do
+            {
+               
+                Console.WriteLine("Press 1 to play with your pet.");
+                Console.WriteLine("Press 2 to feed your pet.");
+                Console.WriteLine("Press 3 to bring your pet to the vet.");
+                Console.WriteLine("Press 0 to go back to the Main Menu.");
+
+                string interMenuChoice = Console.ReadLine();
+
+                switch (interMenuChoice)
+                {
+                    case "1":
+                        pet.Play();
+                        break;
+                    case "2":
+                        pet.Feed();
+                        break;
+                    case "3":
+                        pet.TakeToVet();
+                        break;
+                    case "0":
+                        run = false;
+                        break;
+                    default:
+                        Console.WriteLine("\nIncorrect entry. Try again.");
+                        break;
+                                                                     
+                }
+            } while (run);
+        }
     }
 }

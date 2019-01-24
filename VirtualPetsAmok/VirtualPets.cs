@@ -102,7 +102,7 @@ namespace VirtualPets
 
             // Good
             if (Health < 100)
-                Health += 10;
+                Health = 100;
 
             // Bad
             if (Happiness > 0)
@@ -111,6 +111,27 @@ namespace VirtualPets
             // Bad
             if (Hunger < 100)
                 Hunger += 10;
+        }
+
+        public void TimeEffect()
+        {
+            if (Hunger < 100)
+                Hunger += 10;
+            else if (Hunger == 100 && Health > 0)
+                Health -= 10;
+
+            if (Happiness > 0)
+                Happiness -= 10;
+            else if (Happiness == 0 && Health > 0)
+                Health -= 10;
+
+            if (Boredom < 100)
+                Boredom += 10;
+            else if (Boredom == 100 && Health > 0)
+                Health -= 10;
+
+            if (Health == 0)
+                Console.WriteLine("\nEmergency! Take your pet to the vet immediately!\n");
         }
     }
 
