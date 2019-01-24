@@ -10,29 +10,27 @@ namespace VirtualPets.Tests
         public void Pet_Class()
         {
             // Arrange
-            VirtualPets pet = new VirtualPets();
-            
+            VirtualPet pet = new VirtualPet();
         }
 
         [Fact]
         public void Name_Holds_Value()
         {
             // Arrange
-            VirtualPets pet = new VirtualPets();
+            VirtualPet pet = new VirtualPet();
 
             // Act
             pet.Name = "Fido";
             
             // Assert
             Assert.Equal("Fido", pet.Name);
-
         }
 
         [Fact]
         public void Age_Holds_Value()
         {
             // Arrange
-            VirtualPets pet = new VirtualPets();
+            VirtualPet pet = new VirtualPet();
 
             // Act
             pet.Age = 2;
@@ -45,13 +43,13 @@ namespace VirtualPets.Tests
         public void Hunger_Holds_Value()
         {
             // Arrange
-            VirtualPets pet = new VirtualPets();
+            VirtualPet pet = new VirtualPet();
 
             // Act
-            pet.Hunger = 50;
+            pet.Hunger += 50;
 
             // Assert
-            Assert.Equal(50, pet.Hunger);
+            Assert.Equal(150, pet.Hunger);
         }
 
         [Fact]
@@ -88,7 +86,6 @@ namespace VirtualPets.Tests
                 case "1":
                     num = 2;
                     break;
-
             }
 
             // Assert

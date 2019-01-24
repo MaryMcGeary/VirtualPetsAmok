@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VirtualPets
 {
-    public class VirtualPets
+    public class VirtualPet
     {  
         // Info
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace VirtualPets
         public int Boredom { get; set; }
 
         // Construct to set stats
-        public VirtualPets()
+        public VirtualPet()
         {
             // Set Stats
             Health = 100;
@@ -62,7 +62,56 @@ namespace VirtualPets
             Console.WriteLine("Boredom: " + Boredom + "\n");
         }
 
-        
+        public void Play()
+        {
+            Console.WriteLine("You played with your pet!");
+
+            // Good
+            if (Boredom > 0)
+                Boredom -= 10;
+
+            // Bad
+            if (Happiness < 100)
+                Happiness += 10;
+
+            // Bad
+            if (Hunger < 100)
+                Hunger += 10;
+            else if (Hunger == 100)
+                Health -= 10; // Physical activity while starving lowers health
+        }
+
+        public void Feed()
+        {
+            Console.WriteLine("You fed your pet!");
+
+            // Good
+            if (Happiness < 100)
+                Happiness += 10;
+
+            // Good
+            if (Hunger > 0)
+                Hunger -= 10;
+            else if (Hunger == 0)
+                Health -= 10; // Overfeed lowers health
+        }
+
+        public void TakeToVet()
+        {
+            Console.WriteLine("You took your pet to the Vet!");
+
+            // Good
+            if (Health < 100)
+                Health += 10;
+
+            // Bad
+            if (Happiness > 0)
+                Happiness -= 10;
+
+            // Bad
+            if (Hunger < 100)
+                Hunger += 10;
+        }
     }
 
 }

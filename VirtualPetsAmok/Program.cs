@@ -6,7 +6,7 @@ namespace VirtualPets
     {
         static void Main(string[] args)
         {
-            VirtualPets pet = new VirtualPets();
+            VirtualPet pet = new VirtualPet();
             
             //Quit/Start
             Console.WriteLine("Welcome to Virtual Pets Amok!\n");
@@ -20,7 +20,6 @@ namespace VirtualPets
                 Console.WriteLine("Press 0 to Quit");
 
                 string menuChoice = Console.ReadLine();
-
 
                 switch (menuChoice)
                 {
@@ -46,7 +45,9 @@ namespace VirtualPets
                         Console.WriteLine("\nIncorrect entry. Try again.");
                         break;
                 }
-            } while (run == true);
+            } while (run);
         }
+
+        
     }
 }
