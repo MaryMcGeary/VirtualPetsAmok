@@ -8,11 +8,13 @@ namespace VirtualPets
         {
             VirtualPet pet = new VirtualPet();
             
-            //Quit/Start
-            Console.WriteLine("Welcome to Virtual Pets Amok!\n");
+            // Quit/Start
+            Console.WriteLine("Welcome to Virtual Pets Amok!");
             bool run = true;
             do
             {
+                Console.Clear();
+
                 Console.WriteLine("\nMain Menu:");
                 Console.WriteLine("Press 1 to Create a Pet");
                 Console.WriteLine("Press 2 to Display Pet Information");
@@ -20,8 +22,19 @@ namespace VirtualPets
                 Console.WriteLine("Press 4 to interact with pet");
                 Console.WriteLine("Press 0 to Quit");
 
-                string menuChoice = Console.ReadLine();
+                string menuChoice;
 
+                ConsoleKeyInfo keyPressed = Console.ReadKey();
+
+                if (char.IsDigit(keyPressed.KeyChar))
+                {
+                    menuChoice = keyPressed.KeyChar.ToString();
+                }
+                else
+                {
+                    menuChoice = "default";
+                }
+                
                 pet.TimeEffect();
 
                 switch (menuChoice)
@@ -32,7 +45,7 @@ namespace VirtualPets
                         break;
 
                     case "1":
-                        Console.WriteLine("\nIt's time to create your first pet.");
+                        Console.WriteLine("\nPet Creation:");
                         pet.CreatePet();
                         break;
                     case "2":
@@ -44,7 +57,6 @@ namespace VirtualPets
                         pet.DisplayPetStats();
                         break;
                     case "4":
-                        Console.WriteLine("\nInteraction Menu:");
                         InteractionMenu(pet);
                         break;
                     default:
@@ -54,20 +66,34 @@ namespace VirtualPets
             } while (run);
         }
 
+
         static void InteractionMenu(VirtualPet pet)
         {           
-
             bool run = true;
+
             do
             {
-               
+                Console.Clear();
+
+                Console.WriteLine("\nInteraction Menu:");
                 Console.WriteLine("Press 1 to play with your pet.");
                 Console.WriteLine("Press 2 to feed your pet.");
                 Console.WriteLine("Press 3 to bring your pet to the vet.");
                 Console.WriteLine("Press 0 to go back to the Main Menu.");
 
-                string interMenuChoice = Console.ReadLine();
+                string interMenuChoice;
 
+                ConsoleKeyInfo interKeyPressed = Console.ReadKey();
+
+                if (char.IsDigit(interKeyPressed.KeyChar))
+                {
+                    interMenuChoice = interKeyPressed.KeyChar.ToString();
+                }
+                else
+                {
+                    interMenuChoice = "default";
+                }
+                
                 switch (interMenuChoice)
                 {
                     case "1":
@@ -84,8 +110,7 @@ namespace VirtualPets
                         break;
                     default:
                         Console.WriteLine("\nIncorrect entry. Try again.");
-                        break;
-                                                                     
+                        break;                                       
                 }
             } while (run);
         }

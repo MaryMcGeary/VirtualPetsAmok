@@ -12,11 +12,13 @@ namespace VirtualPets
         public int Age { get; set; }
         public string Color { get; set; }
 
+
         // Stats
         public int Health { get; set; }
         public int Hunger { get; set; }
         public int Happiness { get; set; }
         public int Boredom { get; set; }
+
 
         // Construct to set stats
         public VirtualPet()
@@ -27,6 +29,7 @@ namespace VirtualPets
             Happiness = 100;
             Boredom = 0;
         }
+
 
         public void CreatePet()
         {
@@ -41,77 +44,126 @@ namespace VirtualPets
             Age = Convert.ToInt32(Console.ReadLine());  
 
             Console.WriteLine("What color is your pet");
-            Color = Console.ReadLine();
-
-                                          
+            Color = Console.ReadLine();   
         }
+
 
         public void DisplayPetInfo()
         {
-            Console.WriteLine("\nName: " + Name);
+            Console.WriteLine("Name: " + Name);
             Console.WriteLine("Breed: " + Breed);
             Console.WriteLine("Age: " + Age);
-            Console.WriteLine("Color: " + Color + "\n");
+            Console.WriteLine("Color: " + Color);
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
+
 
         public void DisplayPetStats()
         {
-            Console.WriteLine("\nHealth: " + Health);
+            Console.WriteLine("Health: " + Health);
             Console.WriteLine("Hunger: " + Hunger);
             Console.WriteLine("Happiness: " + Happiness);
-            Console.WriteLine("Boredom: " + Boredom + "\n");
+            Console.WriteLine("Boredom: " + Boredom);
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
+
 
         public void Play()
         {
-            Console.WriteLine("You played with your pet!");
+            Console.WriteLine("\nYou played with your pet!");
 
             // Good
             if (Boredom > 0)
+            {
                 Boredom -= 10;
+                Console.WriteLine(Name + "'s BOREDOM dropped! :)");
+            }
 
-            // Bad
+            // Good
             if (Happiness < 100)
+            {
                 Happiness += 10;
+                Console.WriteLine(Name + "'s HAPPINESS rose! :)");
+            }
 
             // Bad
             if (Hunger < 100)
+            {
                 Hunger += 10;
+                Console.WriteLine(Name + "'s HUNGER rose! :(");
+            }
             else if (Hunger == 100)
+            {
                 Health -= 10; // Physical activity while starving lowers health
+                Console.WriteLine(Name + "'s HEALTH dropped! :(");
+            }
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
+
 
         public void Feed()
         {
-            Console.WriteLine("You fed your pet!");
+            Console.WriteLine("\nYou fed your pet!");
 
             // Good
             if (Happiness < 100)
+            {
                 Happiness += 10;
+                Console.WriteLine(Name + "'s HAPPINESS rose! :)");
+            }
 
             // Good
             if (Hunger > 0)
+            {
                 Hunger -= 10;
+                Console.WriteLine(Name + "'s HUNGER dropped! :)");
+            }
             else if (Hunger == 0)
+            {
                 Health -= 10; // Overfeed lowers health
+                Console.WriteLine(Name + "'s HEALTH dropped! :(");
+            }
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
+
 
         public void TakeToVet()
         {
-            Console.WriteLine("You took your pet to the Vet!");
+            Console.WriteLine("\nYou took your pet to the Vet!");
 
             // Good
             if (Health < 100)
+            {
                 Health = 100;
+                Console.WriteLine(Name + "'s HEALTH has been restored! :)");
+            }
 
             // Bad
             if (Happiness > 0)
+            {
                 Happiness -= 10;
+                Console.WriteLine(Name + "'s HAPPINESS dropped! :(");
+            }
 
             // Bad
             if (Hunger < 100)
+            {
                 Hunger += 10;
+                Console.WriteLine(Name + "'s HUNGER rose! :(");
+            }
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
+
 
         public void TimeEffect()
         {
@@ -131,7 +183,7 @@ namespace VirtualPets
                 Health -= 10;
 
             if (Health == 0)
-                Console.WriteLine("\nEmergency! Take your pet to the vet immediately!\n");
+                Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
         }
     }
 

@@ -91,5 +91,7 @@ namespace VirtualPets.Tests
             // Assert
             Assert.Equal(1, num);
         }
+
+        // stats don't exceed limits
     }
 }
