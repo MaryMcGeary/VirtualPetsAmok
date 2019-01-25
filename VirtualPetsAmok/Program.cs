@@ -165,7 +165,7 @@ namespace VirtualPets
         static int PetSelectionMenu(List<VirtualPet> pets)
         {
             Console.WriteLine("\n");
-
+            
             for (int i = 0; i < pets.Count; i++)
             {
                 int petNum = i + 1;
@@ -176,15 +176,11 @@ namespace VirtualPets
             Console.WriteLine("Which pet would you like to select?");
             ConsoleKeyInfo keyPressed = Console.ReadKey();
 
-            string petSelection;
+            string petSelection = "-1";
 
             if (char.IsDigit(keyPressed.KeyChar))
             {
                 petSelection = keyPressed.KeyChar.ToString();
-            }
-            else
-            {
-                petSelection = "-1";
             }
 
             int petSelectedNum = Convert.ToInt32(petSelection) - 1;

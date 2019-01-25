@@ -90,11 +90,14 @@ namespace VirtualPets
                 Hunger += 10;
                 Console.WriteLine(Name + "'s HUNGER rose! :(");
             }
-            else if (Hunger == 100)
+            else if (Hunger == 100 && Health > 0)
             {
                 Health -= 10; // Physical activity while starving lowers health
                 Console.WriteLine(Name + "'s HEALTH dropped! :(");
             }
+
+            if (Health == 0)
+                Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
         }
 
 
@@ -115,11 +118,14 @@ namespace VirtualPets
                 Hunger -= 10;
                 Console.WriteLine(Name + "'s HUNGER dropped! :)");
             }
-            else if (Hunger == 0)
+            else if (Hunger == 0 && Health > 0)
             {
                 Health -= 10; // Overfeed lowers health
                 Console.WriteLine(Name + "'s HEALTH dropped! :(");
             }
+
+            if (Health == 0)
+                Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
         }
 
 

@@ -93,5 +93,18 @@ namespace VirtualPets.Tests
         }
 
         // stats don't exceed limits
+        [Fact]
+        public void Stats_Dont_Exceed_Max()
+        {
+            // Arrange
+            //var pets = List<VirtualPet>
+            
+
+            // Act
+            
+
+            // Assert
+            
+        }
     }
 }
