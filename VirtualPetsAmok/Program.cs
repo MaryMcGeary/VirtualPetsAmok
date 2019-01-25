@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VirtualPets
 {
@@ -6,11 +7,13 @@ namespace VirtualPets
     {
         static void Main(string[] args)
         {
-            VirtualPet pet = new VirtualPet();
-            
+            var pets = new List<VirtualPet>();
+
             // Quit/Start
             Console.WriteLine("Welcome to Virtual Pets Amok!");
+
             bool run = true;
+
             do
             {
                 Console.Clear();
@@ -34,8 +37,8 @@ namespace VirtualPets
                 {
                     menuChoice = "default";
                 }
-                
-                pet.TimeEffect();
+
+                TimeEffectAll(pets);
 
                 switch (menuChoice)
                 {
@@ -46,18 +49,16 @@ namespace VirtualPets
 
                     case "1":
                         Console.WriteLine("\nPet Creation:");
-                        pet.CreatePet();
+                        pets.Add(CreateNewPet());
                         break;
                     case "2":
-                        Console.WriteLine("\nPet Information:");
-                        pet.DisplayPetInfo();
+                        DisplayAllPetsInfo(pets);
                         break;
                     case "3":
-                        Console.WriteLine("\nPet Stats:");
-                        pet.DisplayPetStats();
+                        DisplayAllPetsStats(pets);
                         break;
                     case "4":
-                        InteractionMenu(pet);
+                        InteractionMenu(pets);
                         break;
                     default:
                         Console.WriteLine("\nIncorrect entry. Try again.");
@@ -67,8 +68,8 @@ namespace VirtualPets
         }
 
 
-        static void InteractionMenu(VirtualPet pet)
-        {           
+        static void InteractionMenu(List<VirtualPet> pets)
+        {
             bool run = true;
 
             do
@@ -97,22 +98,149 @@ namespace VirtualPets
                 switch (interMenuChoice)
                 {
                     case "1":
-                        pet.Play();
+                        PlayWithPets(pets, PetSelectionMenu(pets));
                         break;
                     case "2":
-                        pet.Feed();
+                        FeedPets(pets, PetSelectionMenu(pets));
                         break;
                     case "3":
-                        pet.TakeToVet();
+                        TakePetsToVet(pets, PetSelectionMenu(pets));
                         break;
                     case "0":
                         run = false;
                         break;
                     default:
                         Console.WriteLine("\nIncorrect entry. Try again.");
-                        break;                                       
+                        break;
                 }
             } while (run);
+        }
+
+
+        static VirtualPet CreateNewPet()
+        {
+            VirtualPet pet = new VirtualPet();
+
+            pet.CreatePet();
+
+            return pet;
+        }
+
+
+        static void DisplayAllPetsInfo(List<VirtualPet> pets)
+        {
+            foreach (VirtualPet pet in pets)
+            {
+                Console.WriteLine("\n" + pet.Name + " Info: ");
+                pet.DisplayPetInfo();
+            }
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
+        }
+
+
+        static void DisplayAllPetsStats(List<VirtualPet> pets)
+        {
+            foreach (VirtualPet pet in pets)
+            {
+                Console.WriteLine("\n" + pet.Name + " Stats: ");
+                pet.DisplayPetStats();
+            }
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
+        }
+
+
+        static void TimeEffectAll(List<VirtualPet> pets)
+        {
+            foreach (VirtualPet pet in pets)
+            {
+               pet.TimeEffect();
+            }
+        }
+
+
+        static int PetSelectionMenu(List<VirtualPet> pets)
+        {
+            Console.WriteLine("\n");
+
+            for (int i = 0; i < pets.Count; i++)
+            {
+                int petNum = i + 1;
+                Console.WriteLine("Press " + petNum + " for " + pets[i].Name);
+            }
+
+            Console.WriteLine("Press 0 for all\n");
+            Console.WriteLine("Which pet would you like to select?");
+            ConsoleKeyInfo keyPressed = Console.ReadKey();
+
+            string petSelection;
+
+            if (char.IsDigit(keyPressed.KeyChar))
+            {
+                petSelection = keyPressed.KeyChar.ToString();
+            }
+            else
+            {
+                petSelection = "-1";
+            }
+
+            int petSelectedNum = Convert.ToInt32(petSelection) - 1;
+
+            return petSelectedNum;
+        }
+
+        
+        static void PlayWithPets(List<VirtualPet> pets, int whichPet)
+        {
+            if (whichPet == -1)
+            {
+                foreach (VirtualPet pet in pets)
+                {
+                    pet.Play();
+                }
+            }
+            else
+                pets[whichPet].Play();
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
+        }
+
+
+        static void FeedPets(List<VirtualPet> pets, int whichPet)
+        {
+            if (whichPet == -1)
+            {
+                foreach (VirtualPet pet in pets)
+                {
+                    pet.Feed();
+                }
+            }
+            else
+                pets[whichPet].Feed();
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
+        }
+
+
+        static void TakePetsToVet(List<VirtualPet> pets, int whichPet)
+        {
+            if (whichPet == -1)
+            {
+                foreach (VirtualPet pet in pets)
+                {
+                    pet.TakeToVet();
+                }
+            }
+            else
+                pets[whichPet].TakeToVet();
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
     }
 }

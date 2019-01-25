@@ -54,9 +54,6 @@ namespace VirtualPets
             Console.WriteLine("Breed: " + Breed);
             Console.WriteLine("Age: " + Age);
             Console.WriteLine("Color: " + Color);
-
-            Console.WriteLine("\nPress ANY KEY to continue");
-            Console.ReadKey();
         }
 
 
@@ -66,9 +63,6 @@ namespace VirtualPets
             Console.WriteLine("Hunger: " + Hunger);
             Console.WriteLine("Happiness: " + Happiness);
             Console.WriteLine("Boredom: " + Boredom);
-
-            Console.WriteLine("\nPress ANY KEY to continue");
-            Console.ReadKey();
         }
 
 
@@ -101,9 +95,6 @@ namespace VirtualPets
                 Health -= 10; // Physical activity while starving lowers health
                 Console.WriteLine(Name + "'s HEALTH dropped! :(");
             }
-
-            Console.WriteLine("\nPress ANY KEY to continue");
-            Console.ReadKey();
         }
 
 
@@ -129,9 +120,6 @@ namespace VirtualPets
                 Health -= 10; // Overfeed lowers health
                 Console.WriteLine(Name + "'s HEALTH dropped! :(");
             }
-
-            Console.WriteLine("\nPress ANY KEY to continue");
-            Console.ReadKey();
         }
 
 
@@ -159,9 +147,6 @@ namespace VirtualPets
                 Hunger += 10;
                 Console.WriteLine(Name + "'s HUNGER rose! :(");
             }
-
-            Console.WriteLine("\nPress ANY KEY to continue");
-            Console.ReadKey();
         }
 
 
