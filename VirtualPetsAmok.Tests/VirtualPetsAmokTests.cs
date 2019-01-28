@@ -49,7 +49,7 @@ namespace VirtualPets.Tests
             pet.Hunger += 50;
 
             // Assert
-            Assert.Equal(150, pet.Hunger);
+            Assert.Equal(50, pet.Hunger);
         }
 
         [Fact]
