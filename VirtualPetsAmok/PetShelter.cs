@@ -20,6 +20,10 @@ namespace VirtualPetsAmok
             pet.CreatePet();
 
             PetsList.Add(pet);
+
+            Console.WriteLine("You created a pet!");
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
 
         public void RemovePet()
@@ -32,8 +36,13 @@ namespace VirtualPetsAmok
             }
             else
             {
+
+                Console.WriteLine(PetsList[whichPet].Name + " got adopted!");
                 PetsList.Remove(PetsList[whichPet]);
             }
+
+            Console.WriteLine("\nPress ANY KEY to continue");
+            Console.ReadKey();
         }
 
         public void DisplayAllPetsInfo()
