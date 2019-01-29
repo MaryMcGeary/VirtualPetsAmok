@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VirtualPetsAmok
 {
-    public class OrganicPet
+    public class VirtualPet
     {  
         // Info
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace VirtualPetsAmok
 
 
         // Construct to set stats
-        public OrganicPet()
+        public VirtualPet()
         {
             // Set Stats
             Health = 100;

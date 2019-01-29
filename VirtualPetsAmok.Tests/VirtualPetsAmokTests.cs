@@ -10,14 +10,14 @@ namespace VirtualPetsAmok.Tests
         public void Pet_Class()
         {
             // Arrange
-            OrganicPet pet = new OrganicPet();
+            VirtualPet pet = new VirtualPet();
         }
 
         [Fact]
         public void Name_Holds_Value()
         {
             // Arrange
-            OrganicPet pet = new OrganicPet();
+            VirtualPet pet = new VirtualPet();
 
             // Act
             pet.Name = "Fido";
@@ -30,7 +30,7 @@ namespace VirtualPetsAmok.Tests
         public void Age_Holds_Value()
         {
             // Arrange
-            OrganicPet pet = new OrganicPet();
+            VirtualPet pet = new VirtualPet();
 
             // Act
             pet.Age = 2;
@@ -43,7 +43,7 @@ namespace VirtualPetsAmok.Tests
         public void Hunger_Holds_Value()
         {
             // Arrange
-            OrganicPet pet = new OrganicPet();
+            VirtualPet pet = new VirtualPet();
 
             // Act
             pet.Hunger += 50;

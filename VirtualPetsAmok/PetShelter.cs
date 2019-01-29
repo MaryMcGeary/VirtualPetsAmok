@@ -6,25 +6,31 @@ namespace VirtualPetsAmok
 {
     public class PetShelter
     {
-        public List<OrganicPet> OrganicPetsList { get; set; }
+        public List<VirtualPet> PetsList { get; set; }
 
         public PetShelter()
         {
-            OrganicPetsList = new List<OrganicPet>();
+            PetsList = new List<VirtualPet>();
         }
 
         public void CreateNewPet()
         {
-            OrganicPet pet = new OrganicPet();
+            VirtualPet pet = new VirtualPet();
 
             pet.CreatePet();
 
-            OrganicPetsList.Add(pet);
+            PetsList.Add(pet);
         }
-
+        
+        public void RemovePet()
+        {
+            int whichPet = PetSelectionMenu();
+            PetsList.Remove(PetsList[whichPet]);
+        }
+        
         public void DisplayAllPetsInfo()
         {
-            foreach (OrganicPet pet in OrganicPetsList)
+            foreach (VirtualPet pet in PetsList)
             {
                 Console.WriteLine("\n" + pet.Name + " Info: ");
                 pet.DisplayPetInfo();
@@ -36,7 +42,7 @@ namespace VirtualPetsAmok
 
         public void DisplayAllPetsStats()
         {
-            foreach (OrganicPet pet in OrganicPetsList)
+            foreach (VirtualPet pet in PetsList)
             {
                 Console.WriteLine("\n" + pet.Name + " Stats: ");
                 pet.DisplayPetStats();
@@ -48,20 +54,68 @@ namespace VirtualPetsAmok
 
         public void TimeEffectAll()
         {
-            foreach (OrganicPet pet in OrganicPetsList)
+            foreach (VirtualPet pet in PetsList)
             {
                 pet.TimeEffect();
             }
+        }
+
+        public void InteractionMenu()
+        {
+            bool run = true;
+
+            do
+            {
+                Console.Clear();
+
+                Console.WriteLine("\nInteraction Menu:");
+                Console.WriteLine("Press 1 to play with your pet.");
+                Console.WriteLine("Press 2 to feed your pet.");
+                Console.WriteLine("Press 3 to bring your pet to the vet.");
+                Console.WriteLine("Press 0 to go back to the Main Menu.");
+
+                string interMenuChoice;
+
+                ConsoleKeyInfo interKeyPressed = Console.ReadKey();
+
+                if (char.IsDigit(interKeyPressed.KeyChar))
+                {
+                    interMenuChoice = interKeyPressed.KeyChar.ToString();
+                }
+                else
+                {
+                    interMenuChoice = "default";
+                }
+
+                switch (interMenuChoice)
+                {
+                    case "1":
+                        PlayWithPets(PetSelectionMenu());
+                        break;
+                    case "2":
+                        FeedPets(PetSelectionMenu());
+                        break;
+                    case "3":
+                        TakePetsToVet(PetSelectionMenu());
+                        break;
+                    case "0":
+                        run = false;
+                        break;
+                    default:
+                        Console.WriteLine("\nIncorrect entry. Try again.");
+                        break;
+                }
+            } while (run);
         }
 
         public int PetSelectionMenu()
         {
             Console.WriteLine("\n");
 
-            for (int i = 0; i < OrganicPetsList.Count; i++)
+            for (int i = 0; i < PetsList.Count; i++)
             {
                 int petNum = i + 1;
-                Console.WriteLine("Press " + petNum + " for " + OrganicPetsList[i].Name);
+                Console.WriteLine("Press " + petNum + " for " + PetsList[i].Name);
             }
 
             Console.WriteLine("Press 0 for all\n");
@@ -84,13 +138,13 @@ namespace VirtualPetsAmok
         {
             if (whichPet == -1)
             {
-                foreach (OrganicPet pet in OrganicPetsList)
+                foreach (VirtualPet pet in PetsList)
                 {
                     pet.Play();
                 }
             }
             else
-                OrganicPetsList[whichPet].Play();
+                PetsList[whichPet].Play();
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
@@ -100,13 +154,13 @@ namespace VirtualPetsAmok
         {
             if (whichPet == -1)
             {
-                foreach (OrganicPet pet in OrganicPetsList)
+                foreach (VirtualPet pet in PetsList)
                 {
                     pet.Feed();
                 }
             }
             else
-                OrganicPetsList[whichPet].Feed();
+                PetsList[whichPet].Feed();
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
@@ -116,13 +170,13 @@ namespace VirtualPetsAmok
         {
             if (whichPet == -1)
             {
-                foreach (OrganicPet pet in OrganicPetsList)
+                foreach (VirtualPet pet in PetsList)
                 {
                     pet.TakeToVet();
                 }
             }
             else
-                OrganicPetsList[whichPet].TakeToVet();
+                PetsList[whichPet].TakeToVet();
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
