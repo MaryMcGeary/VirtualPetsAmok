@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace VirtualPets.Tests
+namespace VirtualPetsAmok.Tests
 {
     public class VirtualPetsAmokTests
     {
@@ -10,14 +10,14 @@ namespace VirtualPets.Tests
         public void Pet_Class()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet();
         }
 
         [Fact]
         public void Name_Holds_Value()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet();
 
             // Act
             pet.Name = "Fido";
@@ -30,7 +30,7 @@ namespace VirtualPets.Tests
         public void Age_Holds_Value()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet();
 
             // Act
             pet.Age = 2;
@@ -43,7 +43,7 @@ namespace VirtualPets.Tests
         public void Hunger_Holds_Value()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet();
 
             // Act
             pet.Hunger += 50;

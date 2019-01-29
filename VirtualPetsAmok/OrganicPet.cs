@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VirtualPets
+namespace VirtualPetsAmok
 {
-    public class VirtualPet
+    public class OrganicPet
     {  
         // Info
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace VirtualPets
 
 
         // Construct to set stats
-        public VirtualPet()
+        public OrganicPet()
         {
             // Set Stats
             Health = 100;

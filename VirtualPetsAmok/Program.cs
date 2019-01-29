@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VirtualPets
+namespace VirtualPetsAmok
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var pets = new List<VirtualPet>();
+            var pets = new List<OrganicPet>();
 
             // Quit/Start
             Console.WriteLine("Welcome to Virtual Pets Amok!");
@@ -68,7 +68,7 @@ namespace VirtualPets
         }
 
 
-        static void InteractionMenu(List<VirtualPet> pets)
+        static void InteractionMenu(List<OrganicPet> pets)
         {
             bool run = true;
 
@@ -117,9 +117,9 @@ namespace VirtualPets
         }
 
 
-        static VirtualPet CreateNewPet()
+        static OrganicPet CreateNewPet()
         {
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet();
 
             pet.CreatePet();
 
@@ -127,9 +127,9 @@ namespace VirtualPets
         }
 
 
-        static void DisplayAllPetsInfo(List<VirtualPet> pets)
+        static void DisplayAllPetsInfo(List<OrganicPet> pets)
         {
-            foreach (VirtualPet pet in pets)
+            foreach (OrganicPet pet in pets)
             {
                 Console.WriteLine("\n" + pet.Name + " Info: ");
                 pet.DisplayPetInfo();
@@ -140,9 +140,9 @@ namespace VirtualPets
         }
 
 
-        static void DisplayAllPetsStats(List<VirtualPet> pets)
+        static void DisplayAllPetsStats(List<OrganicPet> pets)
         {
-            foreach (VirtualPet pet in pets)
+            foreach (OrganicPet pet in pets)
             {
                 Console.WriteLine("\n" + pet.Name + " Stats: ");
                 pet.DisplayPetStats();
@@ -153,16 +153,16 @@ namespace VirtualPets
         }
 
 
-        static void TimeEffectAll(List<VirtualPet> pets)
+        static void TimeEffectAll(List<OrganicPet> pets)
         {
-            foreach (VirtualPet pet in pets)
+            foreach (OrganicPet pet in pets)
             {
                pet.TimeEffect();
             }
         }
 
 
-        static int PetSelectionMenu(List<VirtualPet> pets)
+        static int PetSelectionMenu(List<OrganicPet> pets)
         {
             Console.WriteLine("\n");
             
@@ -189,11 +189,11 @@ namespace VirtualPets
         }
 
         
-        static void PlayWithPets(List<VirtualPet> pets, int whichPet)
+        static void PlayWithPets(List<OrganicPet> pets, int whichPet)
         {
             if (whichPet == -1)
             {
-                foreach (VirtualPet pet in pets)
+                foreach (OrganicPet pet in pets)
                 {
                     pet.Play();
                 }
@@ -206,11 +206,11 @@ namespace VirtualPets
         }
 
 
-        static void FeedPets(List<VirtualPet> pets, int whichPet)
+        static void FeedPets(List<OrganicPet> pets, int whichPet)
         {
             if (whichPet == -1)
             {
-                foreach (VirtualPet pet in pets)
+                foreach (OrganicPet pet in pets)
                 {
                     pet.Feed();
                 }
@@ -223,11 +223,11 @@ namespace VirtualPets
         }
 
 
-        static void TakePetsToVet(List<VirtualPet> pets, int whichPet)
+        static void TakePetsToVet(List<OrganicPet> pets, int whichPet)
         {
             if (whichPet == -1)
             {
-                foreach (VirtualPet pet in pets)
+                foreach (OrganicPet pet in pets)
                 {
                     pet.TakeToVet();
                 }
