@@ -8,7 +8,7 @@ namespace VirtualPetsAmok
         static void Main(string[] args)
         {
             // Quit/Start
-            Console.WriteLine("Welcome to Virtual Pets Amok!");
+            Console.WriteLine("Welcome to Virtual Pets Amok!\n");
 
             bool run = true;
             var myShelter = new PetShelter();
@@ -22,8 +22,9 @@ namespace VirtualPetsAmok
         static bool MainMenu(PetShelter myShelter)
         {
             Console.Clear();
+            myShelter.TimeEffectAll();
 
-            Console.WriteLine("\nMain Menu:");
+            Console.WriteLine("Main Menu:");
             Console.WriteLine("Press 1 to Create a Pet");
             Console.WriteLine("Press 2 to Display Pets' Information");
             Console.WriteLine("Press 3 to Display Pets' Stats");
@@ -31,9 +32,9 @@ namespace VirtualPetsAmok
             Console.WriteLine("Press 5 to Remove a Pet");
             Console.WriteLine("Press 0 to Quit");
 
-            string menuChoice;
-
             ConsoleKeyInfo keyPressed = Console.ReadKey();
+
+            string menuChoice;
 
             if (char.IsDigit(keyPressed.KeyChar))
             {
@@ -43,8 +44,6 @@ namespace VirtualPetsAmok
             {
                 menuChoice = "default";
             }
-
-            myShelter.TimeEffectAll();
 
             switch (menuChoice)
             {
