@@ -48,9 +48,11 @@ namespace VirtualPetsAmok
         }
 
 
+
+
         public void DisplayPetInfo()
         {
-            Console.WriteLine("Name: " + Name);
+            Console.WriteLine("\nName: " + Name);
             Console.WriteLine("Breed: " + Breed);
             Console.WriteLine("Age: " + Age);
             Console.WriteLine("Color: " + Color);
@@ -59,7 +61,7 @@ namespace VirtualPetsAmok
 
         public void DisplayPetStats()
         {
-            Console.WriteLine("Health: " + Health);
+            Console.WriteLine("\nHealth: " + Health);
             Console.WriteLine("Hunger: " + Hunger);
             Console.WriteLine("Happiness: " + Happiness);
             Console.WriteLine("Boredom: " + Boredom);
@@ -177,5 +179,4 @@ namespace VirtualPetsAmok
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
         }
     }
-
 }

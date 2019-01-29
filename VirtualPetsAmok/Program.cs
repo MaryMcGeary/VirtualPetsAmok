@@ -26,24 +26,37 @@ namespace VirtualPetsAmok
 
             Console.WriteLine("Main Menu:");
             Console.WriteLine("Press 1 to Create a Pet");
-            Console.WriteLine("Press 2 to Display Pets' Information");
-            Console.WriteLine("Press 3 to Display Pets' Stats");
-            Console.WriteLine("Press 4 to Interact with Pets");
-            Console.WriteLine("Press 5 to Remove a Pet");
-            Console.WriteLine("Press 0 to Quit");
+            
+            if (myShelter.PetsList.Count > 0)
+            {
 
+                Console.WriteLine("Press 2 to Display Pets' Information");
+                Console.WriteLine("Press 3 to Display Pets' Stats");
+                Console.WriteLine("Press 4 to Interact with Pets");
+                Console.WriteLine("Press 5 to Remove a Pet");
+            }
+            Console.WriteLine("Press 0 to Quit");
+    
             ConsoleKeyInfo keyPressed = Console.ReadKey();
+
 
             string menuChoice;
 
             if (char.IsDigit(keyPressed.KeyChar))
             {
+
                 menuChoice = keyPressed.KeyChar.ToString();
             }
             else
             {
                 menuChoice = "default";
             }
+
+            if (!menuChoice.Equals("1") && !menuChoice.Equals("0") && myShelter.PetsList.Count == 0)
+            {
+                menuChoice = "-1";
+            }
+
 
             switch (menuChoice)
             {
@@ -68,6 +81,8 @@ namespace VirtualPetsAmok
                     break;
                 default:
                     Console.WriteLine("\nIncorrect entry. Try again.");
+                    Console.WriteLine("\nPress ANY KEY to continue");
+                    Console.ReadKey();
                     break;
             }
 
