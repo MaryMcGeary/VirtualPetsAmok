@@ -7,18 +7,16 @@ namespace VirtualPetsAmok
     public class VirtualPet
     {  
         // Info
-        public string Name { get; set; }
-        public string Breed { get; set; }
-        public int Age { get; set; }
-        public string Color { get; set; }
-
+        public string Name { get; private set; }
+        public string Breed { get; private set; }
+        public int Age { get; private set; }
+        public string Color { get; private set; }
 
         // Stats
-        public int Health { get; set; }
-        public int Hunger { get; set; }
-        public int Happiness { get; set; }
-        public int Boredom { get; set; }
-
+        public int Health { get; private set; }
+        public int Hunger { get; private set; }
+        public int Happiness { get; private set; }
+        public int Boredom { get; private set; }
 
         // Construct to set stats
         public VirtualPet()
@@ -29,7 +27,6 @@ namespace VirtualPetsAmok
             Happiness = 100;
             Boredom = 0;
         }
-
 
         public void CreatePet()
         {
@@ -47,9 +44,6 @@ namespace VirtualPetsAmok
             Color = Console.ReadLine();   
         }
 
-
-
-
         public void DisplayPetInfo()
         {
             Console.WriteLine("\nName: " + Name);
@@ -58,7 +52,6 @@ namespace VirtualPetsAmok
             Console.WriteLine("Color: " + Color);
         }
 
-
         public void DisplayPetStats()
         {
             Console.WriteLine("\nHealth: " + Health);
@@ -66,7 +59,6 @@ namespace VirtualPetsAmok
             Console.WriteLine("Happiness: " + Happiness);
             Console.WriteLine("Boredom: " + Boredom);
         }
-
 
         public void Play()
         {
@@ -102,7 +94,6 @@ namespace VirtualPetsAmok
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
         }
 
-
         public void Feed()
         {
             Console.WriteLine("\nYou fed your pet!");
@@ -130,7 +121,6 @@ namespace VirtualPetsAmok
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
         }
 
-
         public void TakeToVet()
         {
             Console.WriteLine("\nYou took your pet to the Vet!");
@@ -156,7 +146,6 @@ namespace VirtualPetsAmok
                 Console.WriteLine(Name + "'s HUNGER rose! :(");
             }
         }
-
 
         public void TimeEffect()
         {

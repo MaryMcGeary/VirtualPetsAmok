@@ -21,7 +21,7 @@ namespace VirtualPetsAmok
 
             PetsList.Add(pet);
 
-            Console.WriteLine("You created a pet!");
+            Console.WriteLine("\n" + pet.Name + " has joined your pet shelter!");
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
         }
@@ -36,8 +36,7 @@ namespace VirtualPetsAmok
             }
             else
             {
-
-                Console.WriteLine(PetsList[whichPet].Name + " got adopted!");
+                Console.WriteLine("\n" + PetsList[whichPet].Name + " got adopted!");
                 PetsList.Remove(PetsList[whichPet]);
             }
 
@@ -47,6 +46,8 @@ namespace VirtualPetsAmok
 
         public void DisplayAllPetsInfo()
         {
+            Console.WriteLine("\n\nPet Information:");
+
             int whichPet = PetSelectionMenu();
             if(whichPet == -1)
             {
@@ -60,7 +61,6 @@ namespace VirtualPetsAmok
             {
                 PetsList[whichPet].DisplayPetInfo();
             }
-            
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
@@ -68,6 +68,8 @@ namespace VirtualPetsAmok
 
         public void DisplayAllPetsStats()
         {
+            Console.WriteLine("\n\nPet Stats:");
+
             int whichPet = PetSelectionMenu();
             if (whichPet == -1)
             {
@@ -81,6 +83,7 @@ namespace VirtualPetsAmok
             {
                 PetsList[whichPet].DisplayPetStats();
             }
+
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
         }
@@ -143,8 +146,6 @@ namespace VirtualPetsAmok
 
         public int PetSelectionMenu()
         {
-            Console.WriteLine("\n");
-
             for (int i = 0; i < PetsList.Count; i++)
             {
                 int petNum = i + 1;
@@ -169,7 +170,7 @@ namespace VirtualPetsAmok
 
         public void PlayWithPets()
         {
-            Console.WriteLine("\nPlay Menu:");
+            Console.WriteLine("\n\nPlay Menu:");
             int whichPet = PetSelectionMenu();
 
             if (whichPet == -1)
@@ -188,7 +189,7 @@ namespace VirtualPetsAmok
 
         public void FeedPets()
         {
-            Console.WriteLine("\nFeed Menu:");
+            Console.WriteLine("\n\nFeed Menu:");
             int whichPet = PetSelectionMenu();
 
             if (whichPet == -1)
@@ -207,7 +208,7 @@ namespace VirtualPetsAmok
 
         public void TakePetsToVet()
         {
-            Console.WriteLine("\nVet Menu:");
+            Console.WriteLine("\n\nVet Menu:");
             int whichPet = PetSelectionMenu();
 
             if (whichPet == -1)
