@@ -30,14 +30,22 @@ namespace VirtualPetsAmok
         {
             Console.WriteLine("\n\nPet Adoption Process:");
             int whichPet = PetSelectionMenu();
-            if (whichPet == -1)
+            switch (whichPet)
             {
-                PetsList.Clear();
-            }
-            else
-            {
-                Console.WriteLine("\n" + PetsList[whichPet].Name + " got adopted!");
-                PetsList.Remove(PetsList[whichPet]);
+                case -2:
+                    foreach (VirtualPet pet in PetsList)
+                    {
+                        Console.WriteLine("\n" + pet.Name + " got adopted!");
+                    }
+                    PetsList.Clear();
+                    break;
+                case -1:
+                    Console.WriteLine("\n\nCancelled!");
+                    break;
+                default:
+                    Console.WriteLine("\n" + PetsList[whichPet].Name + " got adopted!");
+                    PetsList.Remove(PetsList[whichPet]);
+                    break;
             }
 
             Console.WriteLine("\nPress ANY KEY to continue");
@@ -49,17 +57,21 @@ namespace VirtualPetsAmok
             Console.WriteLine("\n\nPet Information:");
 
             int whichPet = PetSelectionMenu();
-            if(whichPet == -1)
+            switch (whichPet)
             {
-                foreach (VirtualPet pet in PetsList)
-                {
-                    Console.WriteLine("\n" + pet.Name + " Info: ");
-                    pet.DisplayPetInfo();
-                }
-            }
-            else
-            {
-                PetsList[whichPet].DisplayPetInfo();
+                case -2:
+                    foreach (VirtualPet pet in PetsList)
+                    {
+                        Console.WriteLine("\n" + pet.Name + " Info: ");
+                        pet.DisplayPetInfo();
+                    }
+                    break;
+                case -1:
+                    Console.WriteLine("\n\nCancelled!");
+                    break;
+                default:
+                    PetsList[whichPet].DisplayPetInfo();
+                    break;
             }
 
             Console.WriteLine("\nPress ANY KEY to continue");
@@ -71,18 +83,23 @@ namespace VirtualPetsAmok
             Console.WriteLine("\n\nPet Stats:");
 
             int whichPet = PetSelectionMenu();
-            if (whichPet == -1)
+            switch (whichPet)
             {
-                foreach (VirtualPet pet in PetsList)
-                {
-                Console.WriteLine("\n" + pet.Name + " Stats: ");
-                pet.DisplayPetStats();
-                }
+                case -2:
+                    foreach (VirtualPet pet in PetsList)
+                    {
+                        Console.WriteLine("\n" + pet.Name + " Stats: ");
+                        pet.DisplayPetStats();
+                    }
+                    break;
+                case -1:
+                    Console.WriteLine("\n\nCancelled!");
+                    break;
+                default:
+                    PetsList[whichPet].DisplayPetStats();
+                    break;
             }
-            else
-            {
-                PetsList[whichPet].DisplayPetStats();
-            }
+           
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
@@ -146,24 +163,47 @@ namespace VirtualPetsAmok
 
         public int PetSelectionMenu()
         {
-            for (int i = 0; i < PetsList.Count; i++)
+            bool redo;
+            int petSelectedNum;
+            string petSelection;
+            do
             {
-                int petNum = i + 1;
-                Console.WriteLine("Press " + petNum + " for " + PetsList[i].Name);
-            }
+                redo = false;
 
-            Console.WriteLine("Press 0 for all\n");
-            Console.WriteLine("Which pet would you like to select?");
-            ConsoleKeyInfo keyPressed = Console.ReadKey();
+                for (int i = 0; i < PetsList.Count; i++)
+                {
+                    int petNum = i + 1;
+                    Console.WriteLine("Press " + petNum + " for " + PetsList[i].Name);
+                }
 
-            string petSelection = "-1";
+                Console.WriteLine("Press A for all");
+                Console.WriteLine("Press 0 to cancel\n");
+                Console.WriteLine("Which pet would you like to select?");
+                ConsoleKeyInfo keyPressed = Console.ReadKey();
 
-            if (char.IsDigit(keyPressed.KeyChar))
-            {
-                petSelection = keyPressed.KeyChar.ToString();
-            }
+                petSelection = "-1";
 
-            int petSelectedNum = Convert.ToInt32(petSelection) - 1;
+                if (char.IsDigit(keyPressed.KeyChar))
+                {
+                    petSelection = keyPressed.KeyChar.ToString();
+                    if (Convert.ToInt32(petSelection) > PetsList.Count)
+                    {
+                        redo = true;
+                        Console.WriteLine("\nIncorrect entry. Try again.\n");
+                    }
+                }
+                else
+                {
+                    if (!keyPressed.Key.Equals(ConsoleKey.A))
+                    {
+                        redo = true;
+                        Console.WriteLine("\nIncorrect entry. Try again.\n");
+                    }
+                }
+
+                
+            } while (redo);
+            petSelectedNum = Convert.ToInt32(petSelection) - 1;
 
             return petSelectedNum;
         }
@@ -171,17 +211,24 @@ namespace VirtualPetsAmok
         public void PlayWithPets()
         {
             Console.WriteLine("\n\nPlay Menu:");
-            int whichPet = PetSelectionMenu();
 
-            if (whichPet == -1)
+            int whichPet = PetSelectionMenu();
+            switch (whichPet)
             {
-                foreach (VirtualPet pet in PetsList)
-                {
-                    pet.Play();
-                }
+                case -2:
+                    foreach (VirtualPet pet in PetsList)
+                    {
+                        pet.Play();
+                    }
+                    break;
+
+                case -1:
+                    Console.WriteLine("\n\nCancelled!");
+                    break;
+                default:
+                    PetsList[whichPet].Play();
+                    break;
             }
-            else
-                PetsList[whichPet].Play();
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
@@ -192,15 +239,22 @@ namespace VirtualPetsAmok
             Console.WriteLine("\n\nFeed Menu:");
             int whichPet = PetSelectionMenu();
 
-            if (whichPet == -1)
+            switch (whichPet)
             {
-                foreach (VirtualPet pet in PetsList)
-                {
-                    pet.Feed();
-                }
+                case -2:
+                    foreach (VirtualPet pet in PetsList)
+                    {
+                        pet.Feed();
+                    }
+                    break;
+                case -1:
+                    Console.WriteLine("\n\nCancelled!");
+                    break;
+                    
+                default:
+                    PetsList[whichPet].Feed();
+                    break;
             }
-            else
-                PetsList[whichPet].Feed();
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
@@ -211,15 +265,21 @@ namespace VirtualPetsAmok
             Console.WriteLine("\n\nVet Menu:");
             int whichPet = PetSelectionMenu();
 
-            if (whichPet == -1)
+            switch (whichPet)
             {
-                foreach (VirtualPet pet in PetsList)
-                {
-                    pet.TakeToVet();
-                }
+                case -2:
+                    foreach (VirtualPet pet in PetsList)
+                    {
+                        pet.TakeToVet();
+                    }
+                    break;
+                case -1:
+                    Console.WriteLine("\n\nCancelled!");
+                    break;
+                default:
+                    PetsList[whichPet].TakeToVet();
+                    break;
             }
-            else
-                PetsList[whichPet].TakeToVet();
 
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();

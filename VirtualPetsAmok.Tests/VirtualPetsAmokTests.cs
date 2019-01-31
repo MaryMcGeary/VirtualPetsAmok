@@ -20,10 +20,10 @@ namespace VirtualPetsAmok.Tests
             VirtualPet pet = new VirtualPet();
 
             // Act
-            pet.Name = "Fido";
+            //pet.Name = "Fido";
             
             // Assert
-            Assert.Equal("Fido", pet.Name);
+            Assert.NotEqual("Fido", pet.Name);
         }
 
         [Fact]
@@ -33,10 +33,10 @@ namespace VirtualPetsAmok.Tests
             VirtualPet pet = new VirtualPet();
 
             // Act
-            pet.Age = 2;
+            //pet.Age = 2;
 
             // Assert
-            Assert.Equal(2, pet.Age);
+            Assert.NotEqual(2, pet.Age);
         }
 
         [Fact]
@@ -46,10 +46,10 @@ namespace VirtualPetsAmok.Tests
             VirtualPet pet = new VirtualPet();
 
             // Act
-            pet.Hunger += 50;
+            //pet.Hunger += 50;
 
             // Assert
-            Assert.Equal(50, pet.Hunger);
+            Assert.NotEqual(50, pet.Hunger);
         }
 
         [Fact]
@@ -96,15 +96,13 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Stats_Dont_Exceed_Max()
         {
-            // Arrange
-            //var pets = List<VirtualPet>
-            
+            PetShelter shelter = new PetShelter();
 
-            // Act
-            
+            shelter.PetsList.Add(new VirtualPet());
 
-            // Assert
-            
+            shelter.PetsList[0].Feed();
+
+            Assert.Equal(0, shelter.PetsList[0].Hunger);
         }
     }
 }

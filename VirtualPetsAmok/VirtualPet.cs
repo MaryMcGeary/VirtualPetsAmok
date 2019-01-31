@@ -5,7 +5,7 @@ using System.Text;
 namespace VirtualPetsAmok
 {
     public class VirtualPet
-    {  
+    {
         // Info
         public string Name { get; private set; }
         public string Breed { get; private set; }
@@ -31,17 +31,60 @@ namespace VirtualPetsAmok
         public void CreatePet()
         {
             // Get info
-            Console.WriteLine("\nWhat is your pet's name?");
-            Name = Console.ReadLine();
+            int proceedOkay;
+            for (int questionNum = 0; questionNum < 4; questionNum += proceedOkay)
+            {
+                proceedOkay = 0;
+                string errorCheck;
+                int number;
+                switch (questionNum)
+                {
+                    case 0:
+                        Console.WriteLine("\nWhat is your pet's name?");
+                        errorCheck = Console.ReadLine();
+                        if (errorCheck.Length > 0)
+                        {
+                            Name = errorCheck;
+                            proceedOkay = 1;
+                        }
+                        break;
 
-            Console.WriteLine("What breed is your pet?");
-            Breed = Console.ReadLine();
+                    case 1:
+                        Console.WriteLine("What breed is your pet?");
+                        errorCheck = Console.ReadLine();
+                        if (errorCheck.Length > 0 && !int.TryParse(errorCheck, out number))
+                        {
+                            Breed = errorCheck;
+                            proceedOkay = 1;
+                        }
+                        break;
 
-            Console.WriteLine("How old is your pet");
-            Age = Convert.ToInt32(Console.ReadLine());  
+                    case 2:       
+                        Console.WriteLine("How old is your pet");
+                        errorCheck = Console.ReadLine();
+                        if (errorCheck.Length > 0 && int.TryParse(errorCheck, out number))
+                        {
+                            Age = Convert.ToInt32(errorCheck);
+                            proceedOkay = 1;
+                        }
+                        break;
 
-            Console.WriteLine("What color is your pet");
-            Color = Console.ReadLine();   
+                    case 3:    
+                        Console.WriteLine("What color is your pet");
+                        errorCheck = Console.ReadLine();
+                        if (errorCheck.Length > 0)
+                        {
+                            Color = errorCheck;
+                            proceedOkay = 1;
+                        }
+                        break;
+                }
+                errorCheck = " Hi";
+                if(errorCheck.Length > 0)
+                {
+
+                }
+            }
         }
 
         public void DisplayPetInfo()

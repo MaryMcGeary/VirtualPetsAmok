@@ -9,82 +9,83 @@ namespace VirtualPetsAmok
         static void Main(string[] args)
         {
             TitleScreen();
-            
+            //Console.WriteLine("uncomment title screen");
+            //Console.ReadKey();
+            MainMenu();
+        }
+
+        static void MainMenu()
+        {
+            PetShelter myShelter = new PetShelter();
             bool run = true;
-            var myShelter = new PetShelter();
 
             do
             {
-                run = MainMenu(myShelter);
+                Console.Clear();
+                myShelter.TimeEffectAll();
+
+                Console.WriteLine("Main Menu:");
+                Console.WriteLine("Press 1 to Create a Pet");
+
+                if (myShelter.PetsList.Count > 0)
+                {
+
+                    Console.WriteLine("Press 2 to Display Pets' Information");
+                    Console.WriteLine("Press 3 to Display Pets' Stats");
+                    Console.WriteLine("Press 4 to Interact with Pets");
+                    Console.WriteLine("Press 5 to Remove a Pet");
+                }
+                Console.WriteLine("Press 0 to Quit");
+
+                ConsoleKeyInfo keyPressed = Console.ReadKey();
+
+                string menuChoice;
+
+                if (char.IsDigit(keyPressed.KeyChar))
+                {
+
+                    menuChoice = keyPressed.KeyChar.ToString();
+                }
+                else
+                {
+                    menuChoice = "default";
+                }
+
+                if (!menuChoice.Equals("1") && !menuChoice.Equals("0") && myShelter.PetsList.Count == 0)
+                {
+                    menuChoice = "-1";
+                }
+
+                switch (menuChoice)
+                {
+                    case "0":
+                        Console.WriteLine("\nSee you next time, friend.");
+                        run =  false;
+                        break;
+                    case "1":
+                        Console.WriteLine("\n\nPet Creation:");
+                        myShelter.CreateNewPet();
+                        break;
+                    case "2":
+                        myShelter.DisplayAllPetsInfo();
+                        break;
+                    case "3":
+                        myShelter.DisplayAllPetsStats();
+                        break;
+                    case "4":
+                        myShelter.InteractionMenu();
+                        break;
+                    case "5":
+                        myShelter.RemovePet();
+                        break;
+                    default:
+                        Console.WriteLine("\nIncorrect entry. Try again.");
+                        Console.WriteLine("\nPress ANY KEY to continue");
+                        Console.ReadKey();
+                        break;
+                }
+
             } while (run);
-        }
-
-        static bool MainMenu(PetShelter myShelter)
-        {
-            Console.Clear();
-            myShelter.TimeEffectAll();
-
-            Console.WriteLine("Main Menu:");
-            Console.WriteLine("Press 1 to Create a Pet");
-            
-            if (myShelter.PetsList.Count > 0)
-            {
-
-                Console.WriteLine("Press 2 to Display Pets' Information");
-                Console.WriteLine("Press 3 to Display Pets' Stats");
-                Console.WriteLine("Press 4 to Interact with Pets");
-                Console.WriteLine("Press 5 to Remove a Pet");
-            }
-            Console.WriteLine("Press 0 to Quit");
-    
-            ConsoleKeyInfo keyPressed = Console.ReadKey();
-
-            string menuChoice;
-
-            if (char.IsDigit(keyPressed.KeyChar))
-            {
-
-                menuChoice = keyPressed.KeyChar.ToString();
-            }
-            else
-            {
-                menuChoice = "default";
-            }
-
-            if (!menuChoice.Equals("1") && !menuChoice.Equals("0") && myShelter.PetsList.Count == 0)
-            {
-                menuChoice = "-1";
-            }
-
-            switch (menuChoice)
-            {
-                case "0":
-                    Console.WriteLine("\nSee you next time, friend.");
-                    return false;
-                case "1":
-                    Console.WriteLine("\n\nPet Creation:");
-                    myShelter.CreateNewPet();
-                    break;
-                case "2":
-                    myShelter.DisplayAllPetsInfo();
-                    break;
-                case "3":
-                    myShelter.DisplayAllPetsStats();
-                    break;
-                case "4":
-                    myShelter.InteractionMenu();
-                    break;
-                case "5":
-                    myShelter.RemovePet();
-                    break;
-                default:
-                    Console.WriteLine("\nIncorrect entry. Try again.");
-                    Console.WriteLine("\nPress ANY KEY to continue");
-                    Console.ReadKey();
-                    break;
-            }
-
-            return true;
         }
 
         static void TitleScreen()
