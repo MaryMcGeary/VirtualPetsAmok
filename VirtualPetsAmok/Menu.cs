@@ -98,6 +98,5 @@ namespace VirtualPetsAmok
 
             return (highlight / 2) + 1;
         }
-
     }
 }
