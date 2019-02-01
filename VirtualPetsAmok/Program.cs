@@ -17,71 +17,57 @@ namespace VirtualPetsAmok
         static void MainMenu()
         {
             PetShelter myShelter = new PetShelter();
+            Menu graphicMenu = new Menu();
+            
             bool run = true;
 
             do
             {
-                Console.Clear();
-                myShelter.TimeEffectAll();
-
-                Console.WriteLine("Main Menu:");
-                Console.WriteLine("Press 1 to Create a Pet");
+                List<string> mainMenuItemsList = new List<string>()
+                {
+                    "CREATE A PET",
+                    "QUIT"
+                };
 
                 if (myShelter.PetsList.Count > 0)
                 {
-
-                    Console.WriteLine("Press 2 to Display Pets' Information");
-                    Console.WriteLine("Press 3 to Display Pets' Stats");
-                    Console.WriteLine("Press 4 to Interact with Pets");
-                    Console.WriteLine("Press 5 to Remove a Pet");
-                }
-                Console.WriteLine("Press 0 to Quit");
-
-                ConsoleKeyInfo keyPressed = Console.ReadKey();
-
-                string menuChoice;
-
-                if (char.IsDigit(keyPressed.KeyChar))
-                {
-
-                    menuChoice = keyPressed.KeyChar.ToString();
-                }
-                else
-                {
-                    menuChoice = "default";
+                    mainMenuItemsList.Insert(mainMenuItemsList.Count - 1, "DISPLAY PETS' INFO");
+                    mainMenuItemsList.Insert(mainMenuItemsList.Count - 1, "DISPLAY PETS' STATS");
+                    mainMenuItemsList.Insert(mainMenuItemsList.Count - 1, "INTERACT WITH PETS");
+                    mainMenuItemsList.Insert(mainMenuItemsList.Count - 1, "REMOVE A PET");
                 }
 
-                if (!menuChoice.Equals("1") && !menuChoice.Equals("0") && myShelter.PetsList.Count == 0)
+                myShelter.TimeEffectAll();
+                
+                switch (graphicMenu.VisualMenu(mainMenuItemsList,"Main Menu"))
                 {
-                    menuChoice = "-1";
-                }
-
-                switch (menuChoice)
-                {
-                    case "0":
-                        Console.WriteLine("\nSee you next time, friend.");
-                        run =  false;
-                        break;
-                    case "1":
+                    case 1:
                         Console.WriteLine("\n\nPet Creation:");
                         myShelter.CreateNewPet();
                         break;
-                    case "2":
-                        myShelter.DisplayAllPetsInfo();
+                    case 2:
+                        if (myShelter.PetsList.Count > 0)
+                        {
+                            myShelter.DisplayAllPetsInfo();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nSee you next time, friend.");
+                            run = false;
+                        }
                         break;
-                    case "3":
+                    case 3:
                         myShelter.DisplayAllPetsStats();
                         break;
-                    case "4":
+                    case 4:
                         myShelter.InteractionMenu();
                         break;
-                    case "5":
+                    case 5:
                         myShelter.RemovePet();
                         break;
                     default:
-                        Console.WriteLine("\nIncorrect entry. Try again.");
-                        Console.WriteLine("\nPress ANY KEY to continue");
-                        Console.ReadKey();
+                        Console.WriteLine("\nSee you next time, friend.");
+                        run = false;
                         break;
                 }
 
@@ -124,16 +110,15 @@ namespace VirtualPetsAmok
             // Scrolling Title
             for (int frame = 0; frame < title.Count * 2 + 1; frame++)
             {
-
                 for (int lineHead = frame; lineHead < title.Count; lineHead++)
                 {
                     Console.WriteLine("");
                 }
+
                 if (frame < title.Count)
                 {
                     for (int lineBody = 0; lineBody < frame; lineBody++)
                     {
-
                         Console.WriteLine(title[lineBody]);
                     }
                 }
@@ -144,6 +129,7 @@ namespace VirtualPetsAmok
                         Console.WriteLine(title[lineBody]);
                     }
                 }
+
                 for (int lineFoot = title.Count; lineFoot < frame; lineFoot++)
                 {
                     if (lineFoot == title.Count + ((title.Count - (title.Count % 2)) / 2))
@@ -199,6 +185,100 @@ namespace VirtualPetsAmok
 
                 Console.Clear();
             }
+        }
+
+        
+    }
+
+    class Menu
+    {
+        public int VisualMenu(List<string> menuItemsAlpha, string menuName)
+        {
+            int longestString = 0;
+
+            for (int i = 0; i < menuItemsAlpha.Count; i++)
+            {
+                if (menuItemsAlpha[i].Length > longestString)
+                {
+                    longestString = menuItemsAlpha[i].Length;
+                }
+            }
+
+            for (int i = 0; i < menuItemsAlpha.Count; i++)
+            {
+                menuItemsAlpha[i] = menuItemsAlpha[i].PadRight(longestString + 3);
+                menuItemsAlpha[i] = menuItemsAlpha[i].PadLeft(menuItemsAlpha[i].Length + 3);
+            }
+
+            int highlight = 0;
+            bool run = true;
+            do
+            {
+                List<char[]> menuHolder = new List<char[]>();
+
+                for (int i = 0; i < menuItemsAlpha.Count; i++)
+                {
+                    menuHolder.Add(" ".PadLeft(menuItemsAlpha[i].Length).ToCharArray());
+                    menuHolder.Add(menuItemsAlpha[i].ToCharArray());
+                }
+
+                menuHolder.Add(" ".PadLeft(menuItemsAlpha[0].Length).ToCharArray());
+                
+                for (int j = highlight; j < highlight + 3; j++)
+                {
+                    for (int i = 1; i < menuHolder[0].Length - 1; i++)
+                    {
+                        if (j % 2 == 1)
+                        {
+                            menuHolder[j][1] = '*';
+                            menuHolder[j][menuHolder[0].Length - 2] = '*';
+                        }
+                        else
+                        {
+                            menuHolder[j][i] = '*';
+                        }
+                    }
+                }
+
+                // Prints out menu
+                Console.Clear();
+
+                Console.WriteLine("\n" + menuName.ToUpper().PadLeft(menuName.Length + 1));
+
+                string line = "".PadRight(Console.WindowWidth);
+                line = line.Replace(" ", "_");
+                Console.WriteLine(line);
+
+                for (int i = 0; i < menuHolder.Count; i++)
+                {
+                    Console.WriteLine(menuHolder[i]);
+                }
+
+                Console.WriteLine(line);
+
+                Console.WriteLine("Use UP and DOWN arrow keys to navigate, and ENTER to select.");
+
+                ConsoleKeyInfo keyPressed = Console.ReadKey();
+
+                switch (keyPressed.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        if (highlight > 0)
+                            highlight -= 2;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if (highlight < menuHolder.Count-3)
+                            highlight += 2;
+                        break;
+                    case ConsoleKey.Enter:
+                        run = false;
+                        break;
+                    default:
+                        break;
+                }
+            } while (run);
+
+            return (highlight / 2) + 1;
         }
     }
 }

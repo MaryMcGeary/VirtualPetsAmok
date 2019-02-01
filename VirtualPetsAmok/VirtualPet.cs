@@ -79,11 +79,6 @@ namespace VirtualPetsAmok
                         }
                         break;
                 }
-                errorCheck = " Hi";
-                if(errorCheck.Length > 0)
-                {
-
-                }
             }
         }
 
@@ -134,7 +129,9 @@ namespace VirtualPetsAmok
             }
 
             if (Health == 0)
+            {
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
+            }
         }
 
         public void Feed()
@@ -161,7 +158,9 @@ namespace VirtualPetsAmok
             }
 
             if (Health == 0)
+            {
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
+            }
         }
 
         public void TakeToVet()
@@ -193,22 +192,36 @@ namespace VirtualPetsAmok
         public void TimeEffect()
         {
             if (Hunger < 100)
+            {
                 Hunger += 10;
+            }
             else if (Hunger == 100 && Health > 0)
+            {
                 Health -= 10;
+            }
 
             if (Happiness > 0)
+            {
                 Happiness -= 10;
+            }
             else if (Happiness == 0 && Health > 0)
+            {
                 Health -= 10;
+            }
 
             if (Boredom < 100)
+            {
                 Boredom += 10;
+            }
             else if (Boredom == 100 && Health > 0)
+            {
                 Health -= 10;
+            }
 
             if (Health == 0)
+            {
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
+            }
         }
     }
 }
