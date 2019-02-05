@@ -7,4 +7,4 @@ The user can open and run the project in Visual Studio.
 
 For help contact any of the contributers.
 
-Alex Albright, Mary McGeary, and Sabrina Andrew are the maintainers and contributors to this program.
+Alex Albright, Mary McGeary, and Sabrina Andrew are the maintainers and contributors to this program. 
