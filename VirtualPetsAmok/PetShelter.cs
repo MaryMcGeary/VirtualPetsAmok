@@ -62,7 +62,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (OrganicPet pet in PetsList)
+                    foreach (VirtualPet pet in PetsList)
                     {
                         Console.WriteLine("\n" + pet.Name + " got adopted!");
                     }
@@ -87,7 +87,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (OrganicPet pet in PetsList)
+                    foreach (VirtualPet pet in PetsList)
                     {
                         Console.WriteLine("\n" + pet.Name + " Info: ");
                         pet.DisplayPetInfo();
@@ -111,7 +111,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (OrganicPet pet in PetsList)
+                    foreach (VirtualPet pet in PetsList)
                     {
                         Console.WriteLine("\n" + pet.Name + " Stats: ");
                         pet.DisplayPetStats();
@@ -131,7 +131,7 @@ namespace VirtualPetsAmok
 
         public void TimeEffectAll()
         {
-            foreach (OrganicPet pet in PetsList)
+            foreach (VirtualPet pet in PetsList)
             {
                 pet.TimeEffect();
             }
@@ -141,32 +141,62 @@ namespace VirtualPetsAmok
         {
             bool run = true;
 
+            List<string> interMenuItemsList = new List<string>()
+            {
+               "ORGANIC PETS",
+               "ROBOTIC PETS",
+               "RETURN TO MAIN MENU"
+            };
+
+            Menu graphicMenu = new Menu();
+
+            int type = graphicMenu.VisualMenu(interMenuItemsList, "Type Selection Menu");
+
             do
             {
-                List<string> interMenuItemsList = new List<string>()
-                {
-                    "PLAY WITH YOUR PET",
-                    "FEED YOUR PET",
-                    "TAKE PET TO VET",
-                    "RETURN TO MAIN MENU"
-                };
+                interMenuItemsList = new List<string>();
 
-                Menu graphicMenu = new Menu();
-
-                switch (graphicMenu.VisualMenu(interMenuItemsList, "Interaction Menu"))
+                if (type == 1)
                 {
-                    case 1:
-                        PlayWithPets();
-                        break;
-                    case 2:
-                        FeedPets();
-                        break;
-                    case 3:
-                        TakePetsToVet();
-                        break;
-                    default:
-                        run = false;
-                        break;
+                    interMenuItemsList.Add("PLAY WITH YOUR PET");
+                    interMenuItemsList.Add("FEED YOUR PET");
+                    interMenuItemsList.Add("TAKE PET TO VET");
+                }
+                else if(type == 2)
+                {
+                    interMenuItemsList.Add("PLAY WITH YOUR PET");
+                    interMenuItemsList.Add("CHARGE YOUR PET");
+                    interMenuItemsList.Add("TAKE PET TO MAINTENANCE");
+                }
+                else
+                {
+                    run = false;
+                }
+                interMenuItemsList.Add("RETURN TO MAIN MENU");
+
+                PetTypeDict
+
+                if (type == 1)
+                {
+                    switch (graphicMenu.VisualMenu(interMenuItemsList, "Organic Pet Interaction Menu"))
+                    {
+                        case 1:
+                            PlayWithPets();
+                            break;
+                        case 2:
+                            FeedPets();
+                            break;
+                        case 3:
+                            TakePetsToVet();
+                            break;
+                        default:
+                            run = false;
+                            break;
+                    }
+                }
+                else if (type == 2)
+                {
+                    // ROBOT
                 }
             } while (run);
         }

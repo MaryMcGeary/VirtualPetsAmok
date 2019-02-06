@@ -30,7 +30,7 @@ namespace VirtualPetsAmok
             Type = type;
         }
 
-        public override void CreatePet()
+        public void CreatePet()
         {
             // Get info
             int proceedOkay;
@@ -75,7 +75,7 @@ namespace VirtualPetsAmok
             return myShelter;
         }
 
-        public void DisplayPetInfo()
+        public override void DisplayPetInfo()
         {
             Console.WriteLine("\nName: " + Name);
             Console.WriteLine("Breed: " + Breed);
@@ -83,7 +83,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("Color: " + Color);
         }
 
-        public void DisplayPetStats()
+        public override void DisplayPetStats()
         {
             Console.WriteLine("\nHealth: " + Health);
             Console.WriteLine("Hunger: " + Hunger);
@@ -182,7 +182,7 @@ namespace VirtualPetsAmok
             }
         }
 
-        public void TimeEffect()
+        public override void TimeEffect()
         {
             if (Hunger < 100)
             {

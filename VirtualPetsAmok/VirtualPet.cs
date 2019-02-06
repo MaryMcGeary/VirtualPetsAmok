@@ -9,10 +9,19 @@ namespace VirtualPetsAmok
         public string Name { get; protected set; }
         public string Type { get; protected set; } // Robotic or Organic
 
-        public virtual void CreatePet()
+       
+        public virtual void DisplayPetInfo()
         {
-
-            return myShelter;
         }
+
+        public virtual void DisplayPetStats()
+        {
+        }
+
+        public virtual void TimeEffect()
+        {
+        }
+
+
     }
 }
