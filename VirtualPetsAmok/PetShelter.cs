@@ -16,9 +16,39 @@ namespace VirtualPetsAmok
         public void CreateNewPet()
         {
             VirtualPet pet = new VirtualPet();
+            Console.WriteLine("What do you want to name your pet?");
 
-            pet.CreatePet();
+            string name = Console.ReadLine();
 
+            Console.WriteLine("What type of pet would you like, Organic or Robotic?");
+            string temp = Console.ReadLine().ToLower().Remove(1);
+
+            
+            string type;
+            bool error = false;
+
+            do
+            {
+                if (temp == "o")
+                {
+                    type = "Organic";
+                    OrganicPet newPet = new OrganicPet(name, type);
+                    newPet.CreatePet();
+                    pet = newPet;
+                }
+                else if (temp == "r")
+                {
+                    type = "Robotic";
+                }
+                else
+                {
+                    Console.WriteLine("Must enter Organic or Robotic.  Try again!");
+                    error = true;
+                }
+            } while (error);
+
+           
+            
             PetsList.Add(pet);
 
             Console.WriteLine("\n" + pet.Name + " has joined your pet shelter!");
@@ -32,7 +62,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (VirtualPet pet in PetsList)
+                    foreach (OrganicPet pet in PetsList)
                     {
                         Console.WriteLine("\n" + pet.Name + " got adopted!");
                     }
@@ -57,7 +87,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (VirtualPet pet in PetsList)
+                    foreach (OrganicPet pet in PetsList)
                     {
                         Console.WriteLine("\n" + pet.Name + " Info: ");
                         pet.DisplayPetInfo();
@@ -81,7 +111,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (VirtualPet pet in PetsList)
+                    foreach (OrganicPet pet in PetsList)
                     {
                         Console.WriteLine("\n" + pet.Name + " Stats: ");
                         pet.DisplayPetStats();
@@ -101,7 +131,7 @@ namespace VirtualPetsAmok
 
         public void TimeEffectAll()
         {
-            foreach (VirtualPet pet in PetsList)
+            foreach (OrganicPet pet in PetsList)
             {
                 pet.TimeEffect();
             }
@@ -175,7 +205,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (VirtualPet pet in PetsList)
+                    foreach (OrganicPet pet in PetsList)
                     {
                         pet.Play();
                     }
@@ -200,7 +230,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (VirtualPet pet in PetsList)
+                    foreach (OrganicPet pet in PetsList)
                     {
                         pet.Feed();
                     }
@@ -225,7 +255,7 @@ namespace VirtualPetsAmok
             switch (whichPet)
             {
                 case -1:
-                    foreach (VirtualPet pet in PetsList)
+                    foreach (OrganicPet pet in PetsList)
                     {
                         pet.TakeToVet();
                     }
