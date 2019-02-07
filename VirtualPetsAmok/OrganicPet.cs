@@ -60,7 +60,7 @@ namespace VirtualPetsAmok
             if (Boredom > 0)
             {
                 Boredom -= 10;
-                Console.WriteLine(Name + "'s BOREDOM dropped! :)");
+                Console.WriteLine(Name + "'s BOREDOM fell! :)");
             }
 
             // Good
@@ -103,7 +103,7 @@ namespace VirtualPetsAmok
             if (Hunger > 0)
             {
                 Hunger -= 10;
-                Console.WriteLine(Name + "'s HUNGER dropped! :)");
+                Console.WriteLine(Name + "'s HUNGER fell! :)");
             }
             else if (Hunger == 0 && Sickness < 100)
             {

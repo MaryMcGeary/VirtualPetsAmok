@@ -338,62 +338,52 @@ namespace VirtualPetsAmok
 
         public int PetSelectionMenu(string callingMenu, int type)
         {
-            int petSelectedNum;
-            List<VirtualPet> listOfNames = new List<VirtualPet>();
-            Console.WriteLine("spot 1");
-            Console.ReadKey();
-            if (type == 1)
-            {
-                Console.WriteLine("spot 2");
-                Console.ReadKey();
-                foreach(VirtualPet pet in PetsList)
-                {
-                    Console.WriteLine("spot 3");
-                    Console.ReadKey();
-                    OrganicPet temp = pet as OrganicPet;
-                    if (temp != null)
-                    {
-                        Console.WriteLine("spot 4");
-                        Console.ReadKey();
-                        listOfNames.Add(pet);
-                        Console.WriteLine("spot 5");
-                        Console.ReadKey();
-                    }
-                }
-            }
-            else if (type == 2)
-            {
-                for (int i = 0; i < PetsList.Count; i++)
-                {
-                    RoboticPet temp = PetsList[i] as RoboticPet;
-                    if (temp != null)
-                    {
-                        listOfNames.Add(PetsList[i]);
-                    }
-                }
-            }
-            else
-            {
-                listOfNames = PetsList;
-            }
-
             List<string> petSelMenuItemsList = new List<string>()
             {
                 "ALL",
                 "Cancel"
             };
+
+            int petSelectedNum;
+            int listMax = 0;
             
-            for (int i = 0; i < listOfNames.Count; i++)
+            if (type == 1)
             {
-                int petNum = i + 1;
-                petSelMenuItemsList.Insert(petSelMenuItemsList.Count-1, listOfNames[i].Name.ToString());
+                var listOfNames = PetsList.OfType<OrganicPet>().ToList();
+
+                for (int i = 0; i < listOfNames.Count; i++)
+                {
+                    int petNum = i + 1;
+                    petSelMenuItemsList.Insert(petSelMenuItemsList.Count - 1, listOfNames[i].Name.ToString());
+                }
+                listMax = listOfNames.Count - 1;
             }
+            else if (type == 2)
+            {
+                var listOfNames = PetsList.OfType<RoboticPet>().ToList();
+                for (int i = 0; i < listOfNames.Count; i++)
+                {
+                    int petNum = i + 1;
+                    petSelMenuItemsList.Insert(petSelMenuItemsList.Count - 1, listOfNames[i].Name.ToString());
+                }
+                listMax = listOfNames.Count - 1;
+            }
+            else
+            {
+                for (int i = 0; i < PetsList.Count; i++)
+                {
+                    int petNum = i + 1;
+                    petSelMenuItemsList.Insert(petSelMenuItemsList.Count - 1, PetsList[i].Name.ToString());
+                }
+                listMax = PetsList.Count - 1;
+            }
+            
 
             Menu petVisualMenu = new Menu();
 
             petSelectedNum = petVisualMenu.VisualMenu(petSelMenuItemsList,callingMenu + " | Pet Selection Menu")-2;
 
-            if(petSelectedNum > PetsList.Count - 1)
+            if(petSelectedNum > listMax)
             {
                 petSelectedNum = -2;
             }

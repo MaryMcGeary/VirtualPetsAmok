@@ -60,7 +60,7 @@ namespace VirtualPetsAmok
             if (IdleTime > 0)
             {
                 IdleTime -= 10;
-                Console.WriteLine(Name + "'s Idle Time dropped! :)");
+                Console.WriteLine(Name + "'s Idle Time fell! :)");
             }
 
             // Good
@@ -103,7 +103,7 @@ namespace VirtualPetsAmok
             if (TimeSinceLastCharge > 0)
             {
                 TimeSinceLastCharge -= 10;
-                Console.WriteLine(Name + "'s Time since last charged dropped! :)");
+                Console.WriteLine(Name + "'s Time since last charged fell! :)");
             }
             else if (TimeSinceLastCharge == 0 && Maintenance < 100)
             {
