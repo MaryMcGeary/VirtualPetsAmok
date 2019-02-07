@@ -186,9 +186,5 @@ namespace VirtualPetsAmok
                 Console.Clear();
             }
         }
-
-        
     }
-
-
 }

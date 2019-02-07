@@ -7,7 +7,6 @@ namespace VirtualPetsAmok
     public class OrganicPet : VirtualPet
     {
         // Info
-        
         public string Species { get; private set; }
         public int Age { get; private set; }
         public string Color { get; private set; }

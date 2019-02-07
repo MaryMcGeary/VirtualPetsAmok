@@ -25,7 +25,5 @@ namespace VirtualPetsAmok
         public abstract void DisplayPetStats();
 
         public abstract void TimeEffect();
-
-
     }
 }

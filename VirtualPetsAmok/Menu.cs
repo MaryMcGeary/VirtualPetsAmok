@@ -6,7 +6,6 @@ namespace VirtualPetsAmok
 {
     class Menu
     {
-
         public int VisualMenu(List<string> menuItemsAlpha, string menuName)
         {
             int longestString = 0;

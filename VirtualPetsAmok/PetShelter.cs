@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace VirtualPetsAmok
 {
@@ -148,8 +147,6 @@ namespace VirtualPetsAmok
                     error = true;
                 }
             } while (error);
-            
-            
 
             Console.WriteLine("\n" + newPet.Name + " has joined your pet shelter!");
             Console.WriteLine("\nPress ANY KEY to continue");

@@ -96,14 +96,14 @@ namespace VirtualPetsAmok
             if (CPUTemp > 0)
             {
                 CPUTemp -= 10;
-                Console.WriteLine(Name + "'s CHARGE fell! :)");
+                Console.WriteLine(Name + "'s CPU TEMPERATURE fell! :)");
             }
 
             // Good
             if (TimeSinceLastCharge > 0)
             {
                 TimeSinceLastCharge -= 10;
-                Console.WriteLine(Name + "'s Time since last charged fell! :)");
+                Console.WriteLine(Name + "'s TIME SINCE LAST CHARGE fell! :)");
             }
             else if (TimeSinceLastCharge == 0 && Maintenance < 100)
             {
