@@ -19,65 +19,26 @@ namespace VirtualPetsAmok
         public int Boredom { get; private set; }
 
         // Construct to set stats
-        public OrganicPet(string name, string type)
+        public OrganicPet()
+        {
+
+        }
+        public OrganicPet(string name, string type, string breed, int age, string color) : base(name, type)
         {
             // Set Stats
             Health = 100;
             Hunger = 0;
             Happiness = 100;
             Boredom = 0;
-            Name = name;
-            Type = type;
-        }
-
-        public void CreatePet()
-        {
-            // Get info
-            int proceedOkay;
-            for (int questionNum = 0; questionNum < 3; questionNum += proceedOkay)
-            {
-                proceedOkay = 0;
-                string errorCheck;
-                int number;
-                switch (questionNum)
-                {
-                   case 0:
-                        Console.WriteLine("What breed is your pet?");
-                        errorCheck = Console.ReadLine();
-                        if (errorCheck.Length > 0 && !int.TryParse(errorCheck, out number))
-                        {
-                            Breed = errorCheck;
-                            proceedOkay = 1;
-                        }
-                        break;
-
-                    case 1:       
-                        Console.WriteLine("How old is your pet");
-                        errorCheck = Console.ReadLine();
-                        if (errorCheck.Length > 0 && int.TryParse(errorCheck, out number))
-                        {
-                            Age = Convert.ToInt32(errorCheck);
-                            proceedOkay = 1;
-                        }
-                        break;
-
-                    case 2:    
-                        Console.WriteLine("What color is your pet");
-                        errorCheck = Console.ReadLine();
-                        if (errorCheck.Length > 0)
-                        {
-                            Color = errorCheck;
-                            proceedOkay = 1;
-                        }
-                        break;
-                }
-            }
-            return myShelter;
+            Breed = breed;
+            Age = age;
+            Color = color;
         }
 
         public override void DisplayPetInfo()
         {
             Console.WriteLine("\nName: " + Name);
+            Console.WriteLine("Type: " + Type);
             Console.WriteLine("Breed: " + Breed);
             Console.WriteLine("Age: " + Age);
             Console.WriteLine("Color: " + Color);

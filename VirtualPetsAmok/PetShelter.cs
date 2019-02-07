@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace VirtualPetsAmok
@@ -8,6 +9,8 @@ namespace VirtualPetsAmok
     {
         public List<VirtualPet> PetsList { get; set; }
 
+        VirtualPet newPet;
+
         public PetShelter()
         {
             PetsList = new List<VirtualPet>();
@@ -15,7 +18,7 @@ namespace VirtualPetsAmok
 
         public void CreateNewPet()
         {
-            VirtualPet pet = new VirtualPet();
+            
             Console.WriteLine("What do you want to name your pet?");
 
             string name = Console.ReadLine();
@@ -32,9 +35,50 @@ namespace VirtualPetsAmok
                 if (temp == "o")
                 {
                     type = "Organic";
-                    OrganicPet newPet = new OrganicPet(name, type);
-                    newPet.CreatePet();
-                    pet = newPet;
+                    int proceedOkay;
+                    string breed = "";
+                    int age = 0;
+                    string color = "";
+                    for (int questionNum = 0; questionNum < 3; questionNum += proceedOkay)
+                    {
+                        proceedOkay = 0;
+                        string errorCheck;
+                        int number;
+                        switch (questionNum)
+                        {
+                            case 0:
+                                Console.WriteLine("What breed is your pet?");
+                                errorCheck = Console.ReadLine();
+                                if (errorCheck.Length > 0 && !int.TryParse(errorCheck, out number))
+                                {
+                                    breed = errorCheck;
+                                    proceedOkay = 1;
+                                }
+                                break;
+
+                            case 1:
+                                Console.WriteLine("How old is your pet");
+                                errorCheck = Console.ReadLine();
+                                if (errorCheck.Length > 0 && int.TryParse(errorCheck, out number))
+                                {
+                                    age = Convert.ToInt32(errorCheck);
+                                    proceedOkay = 1;
+                                }
+                                break;
+
+                            case 2:
+                                Console.WriteLine("What color is your pet");
+                                errorCheck = Console.ReadLine();
+                                if (errorCheck.Length > 0)
+                                {
+                                    color = errorCheck;
+                                    proceedOkay = 1;
+                                }
+                                break;
+                        }
+                    }
+                    newPet = new OrganicPet(name, type, breed, age, color);
+                    PetsList.Add(newPet);
                 }
                 else if (temp == "r")
                 {
@@ -46,12 +90,10 @@ namespace VirtualPetsAmok
                     error = true;
                 }
             } while (error);
-
-           
             
-            PetsList.Add(pet);
+            
 
-            Console.WriteLine("\n" + pet.Name + " has joined your pet shelter!");
+            Console.WriteLine("\n" + newPet.Name + " has joined your pet shelter!");
             Console.WriteLine("\nPress ANY KEY to continue");
             Console.ReadKey();
         }
@@ -69,7 +111,7 @@ namespace VirtualPetsAmok
                     PetsList.Clear();
                     break;
                 case -2:
-                    Console.WriteLine("\n\nCancelled!");
+                    Console.WriteLine("\n\nCanceled!");
                     break;
                 default:
                     Console.WriteLine("\n" + PetsList[whichPet].Name + " got adopted!");
@@ -94,7 +136,7 @@ namespace VirtualPetsAmok
                     }
                     break;
                 case -2:
-                    Console.WriteLine("\n\nCancelled!");
+                    Console.WriteLine("\n\nCanceled!");
                     break;
                 default:
                     PetsList[whichPet].DisplayPetInfo();
@@ -118,7 +160,7 @@ namespace VirtualPetsAmok
                     }
                     break;
                 case -2:
-                    Console.WriteLine("\n\nCancelled!");
+                    Console.WriteLine("\n\nCanceled!");
                     break;
                 default:
                     PetsList[whichPet].DisplayPetStats();
@@ -137,10 +179,8 @@ namespace VirtualPetsAmok
             }
         }
 
-        public void InteractionMenu()
+        public void TypeSelectionMenu()
         {
-            bool run = true;
-
             List<string> interMenuItemsList = new List<string>()
             {
                "ORGANIC PETS",
@@ -152,52 +192,88 @@ namespace VirtualPetsAmok
 
             int type = graphicMenu.VisualMenu(interMenuItemsList, "Type Selection Menu");
 
+            if(type == 1)
+            {
+                OrganicInteractionMenu();
+            }
+            else if (type == 2)
+            {
+                RoboticInteractionMenu();
+            }
+            
+        }
+
+        public void OrganicInteractionMenu()
+        {
+            bool run = true;
+            
+            Menu graphicMenu = new Menu();
+            
             do
             {
-                interMenuItemsList = new List<string>();
+                List<string> interMenuItemsList = new List<string>()
+                {
+                    "PLAY WITH YOUR PET",
+                    "FEED YOUR PET",
+                    "TAKE PET TO VET",
+                    "RETURN TO MAIN MENU"
+                };
 
-                if (type == 1)
-                {
-                    interMenuItemsList.Add("PLAY WITH YOUR PET");
-                    interMenuItemsList.Add("FEED YOUR PET");
-                    interMenuItemsList.Add("TAKE PET TO VET");
-                }
-                else if(type == 2)
-                {
-                    interMenuItemsList.Add("PLAY WITH YOUR PET");
-                    interMenuItemsList.Add("CHARGE YOUR PET");
-                    interMenuItemsList.Add("TAKE PET TO MAINTENANCE");
-                }
-                else
-                {
-                    run = false;
-                }
-                interMenuItemsList.Add("RETURN TO MAIN MENU");
 
-                PetTypeDict
+                var organicList = PetsList.OfType<OrganicPet>().ToList();
 
-                if (type == 1)
+                switch (graphicMenu.VisualMenu(interMenuItemsList, "Organic Pet Interaction Menu"))
                 {
-                    switch (graphicMenu.VisualMenu(interMenuItemsList, "Organic Pet Interaction Menu"))
-                    {
-                        case 1:
-                            PlayWithPets();
-                            break;
-                        case 2:
-                            FeedPets();
-                            break;
-                        case 3:
-                            TakePetsToVet();
-                            break;
-                        default:
-                            run = false;
-                            break;
-                    }
+                    case 1:
+                        PlayWithPets(organicList);
+                        break;
+                    case 2:
+                        FeedPets(organicList);
+                        break;
+                    case 3:
+                        TakePetsToVet(organicList);
+                        break;
+                    default:
+                        run = false;
+                        break;
                 }
-                else if (type == 2)
+                
+            } while (run);
+        }
+
+        public void RoboticInteractionMenu()
+        {
+            bool run = true;
+
+            Menu graphicMenu = new Menu();
+
+            do
+            {
+                List<string> interMenuItemsList = new List<string>()
                 {
-                    // ROBOT
+                    "PLAY WITH YOUR PET",
+                    "CHARGE YOUR PET",
+                    "TAKE PET TO REPAIR SHOP",
+                    "RETURN TO MAIN MENU"
+                };
+
+
+                switch (graphicMenu.VisualMenu(interMenuItemsList, "Organic Pet Interaction Menu"))
+                {
+                    case 1:
+                        //PlayWithPets();
+                        break;
+                    case 2:
+                        //FeedPets();
+                        break;
+                    case 3:
+                        //TakePetsToVet();
+                        break;
+                    default:
+                        run = false;
+                        break;
                 }
+
             } while (run);
         }
 
@@ -229,23 +305,23 @@ namespace VirtualPetsAmok
             return petSelectedNum;
         }
 
-        public void PlayWithPets()
+        public void PlayWithPets(List<OrganicPet> organicList)
         {
             int whichPet = PetSelectionMenu("Play");
             switch (whichPet)
             {
                 case -1:
-                    foreach (OrganicPet pet in PetsList)
+                    foreach (OrganicPet pet in organicList)
                     {
                         pet.Play();
                     }
                     break;
 
                 case -2:
-                    Console.WriteLine("\n\nCancelled!");
+                    Console.WriteLine("\n\nCanceled!");
                     break;
                 default:
-                    PetsList[whichPet].Play();
+                    organicList[whichPet].Play();
                     break;
             }
 
@@ -253,24 +329,24 @@ namespace VirtualPetsAmok
             Console.ReadKey();
         }
 
-        public void FeedPets()
+        public void FeedPets(List<OrganicPet> organicList)
         {
             int whichPet = PetSelectionMenu("Feed");
 
             switch (whichPet)
             {
                 case -1:
-                    foreach (OrganicPet pet in PetsList)
+                    foreach (OrganicPet pet in organicList)
                     {
                         pet.Feed();
                     }
                     break;
                 case -2:
-                    Console.WriteLine("\n\nCancelled!");
+                    Console.WriteLine("\n\nCanceled!");
                     break;
                     
                 default:
-                    PetsList[whichPet].Feed();
+                    organicList[whichPet].Feed();
                     break;
             }
 
@@ -278,23 +354,23 @@ namespace VirtualPetsAmok
             Console.ReadKey();
         }
 
-        public void TakePetsToVet()
+        public void TakePetsToVet(List<OrganicPet> organicList)
         {
             int whichPet = PetSelectionMenu("Vet");
 
             switch (whichPet)
             {
                 case -1:
-                    foreach (OrganicPet pet in PetsList)
+                    foreach (OrganicPet pet in organicList)
                     {
                         pet.TakeToVet();
                     }
                     break;
                 case -2:
-                    Console.WriteLine("\n\nCancelled!");
+                    Console.WriteLine("\n\nCanceled!");
                     break;
                 default:
-                    PetsList[whichPet].TakeToVet();
+                    organicList[whichPet].TakeToVet();
                     break;
             }
 

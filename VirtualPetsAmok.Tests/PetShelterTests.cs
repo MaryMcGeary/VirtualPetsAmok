@@ -26,7 +26,7 @@ namespace VirtualPetsAmok.Tests
         {
             PetShelter myShelter = new PetShelter();
 
-            myShelter.PetsList.Add(new VirtualPet());
+            myShelter.PetsList.Add(new OrganicPet());
 
             Assert.NotEmpty(myShelter.PetsList);
         }
@@ -36,7 +36,7 @@ namespace VirtualPetsAmok.Tests
         {
             PetShelter myShelter = new PetShelter();
 
-            myShelter.PetsList.Add(new VirtualPet());
+            myShelter.PetsList.Add(new OrganicPet());
             myShelter.PetsList.Remove(myShelter.PetsList[0]);
 
             Assert.Empty(myShelter.PetsList);

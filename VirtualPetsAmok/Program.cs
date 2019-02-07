@@ -60,7 +60,7 @@ namespace VirtualPetsAmok
                         myShelter.DisplayAllPetsStats();
                         break;
                     case 4:
-                        myShelter.InteractionMenu();
+                        myShelter.TypeSelectionMenu();
                         break;
                     case 5:
                         myShelter.RemovePet();

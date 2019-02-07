@@ -3,53 +3,66 @@ using Xunit;
 
 namespace VirtualPetsAmok.Tests
 {
-    public class VirtualPetsAmokTests
+    public class OrganicPetTests
     {
 
         [Fact]
         public void Pet_Class()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet("Fido", "Organic", "Dog", 2, "Brown");
         }
 
         [Fact]
         public void Name_Holds_Value()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet("Fido", "Organic", "Dog", 2, "Brown");
 
             // Act
-            //pet.Name = "Fido";
-            
+
+
             // Assert
-            Assert.NotEqual("Fido", pet.Name);
+            Assert.Equal("Fido", pet.Name);
         }
 
         [Fact]
         public void Age_Holds_Value()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet("Fido", "Organic", "Dog", 2, "Brown");
 
             // Act
-            //pet.Age = 2;
+            
 
             // Assert
-            Assert.NotEqual(2, pet.Age);
+            Assert.Equal(2, pet.Age);
+        }
+
+        [Fact]
+        public void Hunger_Starts_At_Zero()
+        {
+            // Arrange
+            OrganicPet pet = new OrganicPet("Fido", "Organic", "Dog", 2, "Brown");
+
+            // Act
+            
+
+            // Assert
+            Assert.Equal(0, pet.Hunger);
         }
 
         [Fact]
         public void Hunger_Holds_Value()
         {
             // Arrange
-            VirtualPet pet = new VirtualPet();
+            OrganicPet pet = new OrganicPet("Fido", "Organic", "Dog", 2, "Brown");
 
             // Act
-            //pet.Hunger += 50;
+            pet.Play();
 
             // Assert
-            Assert.NotEqual(50, pet.Hunger);
+            Assert.Equal(10, pet.Hunger);
         }
 
         [Fact]
@@ -96,13 +109,14 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Stats_Dont_Exceed_Max()
         {
-            PetShelter shelter = new PetShelter();
+            OrganicPet pet = new OrganicPet("Fido", "Organic", "Dog", 2, "Brown");
 
-            shelter.PetsList.Add(new VirtualPet());
+            for(int i = 0; i < 100; i++)
+            {
+                pet.Feed();
+            }
 
-            shelter.PetsList[0].Feed();
-
-            Assert.Equal(0, shelter.PetsList[0].Hunger);
+            Assert.Equal(0, pet.Hunger);
         }
     }
 }

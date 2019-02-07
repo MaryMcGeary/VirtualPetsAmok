@@ -4,23 +4,27 @@ using System.Text;
 
 namespace VirtualPetsAmok
 {
-    public class VirtualPet
+    public abstract class VirtualPet
     {
         public string Name { get; protected set; }
         public string Type { get; protected set; } // Robotic or Organic
 
-       
-        public virtual void DisplayPetInfo()
+        public VirtualPet()
         {
+            
         }
 
-        public virtual void DisplayPetStats()
+        public VirtualPet(string name, string type)
         {
+            Name = name;
+            Type = type;
         }
 
-        public virtual void TimeEffect()
-        {
-        }
+        public abstract void DisplayPetInfo();
+
+        public abstract void DisplayPetStats();
+
+        public abstract void TimeEffect();
 
 
     }
