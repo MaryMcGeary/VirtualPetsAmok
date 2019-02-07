@@ -8,7 +8,7 @@ namespace VirtualPetsAmok
     {
         // Info
         
-        public string Breed { get; private set; }
+        public string Species { get; private set; }
         public int Age { get; private set; }
         public string Color { get; private set; }
 
@@ -23,14 +23,14 @@ namespace VirtualPetsAmok
         {
 
         }
-        public OrganicPet(string name, string type, string breed, int age, string color) : base(name, type)
+        public OrganicPet(string name, string type, string species, int age, string color) : base(name, type)
         {
             // Set Stats
             Sickness = 0;
             Hunger = 0;
             Unhappiness = 0;
             Boredom = 0;
-            Breed = breed;
+            Species = species;
             Age = age;
             Color = color;
         }
@@ -39,7 +39,7 @@ namespace VirtualPetsAmok
         {
             Console.WriteLine("\nName: " + Name);
             Console.WriteLine("Type: " + Type);
-            Console.WriteLine("Breed: " + Breed);
+            Console.WriteLine("Species: " + Species);
             Console.WriteLine("Age: " + Age);
             Console.WriteLine("Color: " + Color);
         }

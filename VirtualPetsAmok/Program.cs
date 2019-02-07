@@ -102,7 +102,7 @@ namespace VirtualPetsAmok
             title.Add("                      sMMMMMMM:          hMMMMMMMMMMMM+      mMMMMMM`       yMMMMMMMN/    yMMMMM:     AAAAA  M M M M O  O K K");
             title.Add("                      /ddddddd.          odddddddddddh`      sdddddh        -dmmmdh+.     /mMMMh.    A     A M  M  M  OO  K  K");
 
-            string credits = "Created By Team MVP: Alex Albright, Sabrina Andrews, and Mary McGeary";
+            string credits = "Created By Team MVP: Alex Albright, Sabrina Andrew, and Mary McGeary";
             Random randomNum = new Random();
 
             Console.Clear();
