@@ -13,9 +13,9 @@ namespace VirtualPetsAmok
         public string Color { get; private set; }
 
         // Stats
-        public int Health { get; private set; }
+        public int Sickness { get; private set; }
         public int Hunger { get; private set; }
-        public int Happiness { get; private set; }
+        public int Unhappiness { get; private set; }
         public int Boredom { get; private set; }
 
         // Construct to set stats
@@ -26,9 +26,9 @@ namespace VirtualPetsAmok
         public OrganicPet(string name, string type, string breed, int age, string color) : base(name, type)
         {
             // Set Stats
-            Health = 100;
+            Sickness = 0;
             Hunger = 0;
-            Happiness = 100;
+            Unhappiness = 0;
             Boredom = 0;
             Breed = breed;
             Age = age;
@@ -46,9 +46,9 @@ namespace VirtualPetsAmok
 
         public override void DisplayPetStats()
         {
-            Console.WriteLine("\nHealth: " + Health);
+            Console.WriteLine("\nSickness: " + Sickness);
             Console.WriteLine("Hunger: " + Hunger);
-            Console.WriteLine("Happiness: " + Happiness);
+            Console.WriteLine("Unhappiness: " + Unhappiness);
             Console.WriteLine("Boredom: " + Boredom);
         }
 
@@ -64,10 +64,10 @@ namespace VirtualPetsAmok
             }
 
             // Good
-            if (Happiness < 100)
+            if (Unhappiness > 0)
             {
-                Happiness += 10;
-                Console.WriteLine(Name + "'s HAPPINESS rose! :)");
+                Unhappiness -= 10;
+                Console.WriteLine(Name + "'s UNHAPPINESS fell! :)");
             }
 
             // Bad
@@ -76,13 +76,13 @@ namespace VirtualPetsAmok
                 Hunger += 10;
                 Console.WriteLine(Name + "'s HUNGER rose! :(");
             }
-            else if (Hunger == 100 && Health > 0)
+            else if (Hunger == 100 && Sickness < 100)
             {
-                Health -= 10; // Physical activity while starving lowers health
-                Console.WriteLine(Name + "'s HEALTH dropped! :(");
+                Sickness += 10; // Physical activity while starving lowers health
+                Console.WriteLine(Name + "'s SICKNESS rose! :(");
             }
 
-            if (Health == 0)
+            if (Sickness == 100)
             {
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
             }
@@ -93,10 +93,10 @@ namespace VirtualPetsAmok
             Console.WriteLine("\nYou fed your pet!");
 
             // Good
-            if (Happiness < 100)
+            if (Unhappiness > 0)
             {
-                Happiness += 10;
-                Console.WriteLine(Name + "'s HAPPINESS rose! :)");
+                Unhappiness -= 10;
+                Console.WriteLine(Name + "'s UNHAPPINESS fell! :)");
             }
 
             // Good
@@ -105,13 +105,13 @@ namespace VirtualPetsAmok
                 Hunger -= 10;
                 Console.WriteLine(Name + "'s HUNGER dropped! :)");
             }
-            else if (Hunger == 0 && Health > 0)
+            else if (Hunger == 0 && Sickness < 100)
             {
-                Health -= 10; // Overfeed lowers health
-                Console.WriteLine(Name + "'s HEALTH dropped! :(");
+                Sickness += 10; // Overfeed lowers health
+                Console.WriteLine(Name + "'s SICKNESS rose! :(");
             }
 
-            if (Health == 0)
+            if (Sickness == 100)
             {
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
             }
@@ -122,17 +122,17 @@ namespace VirtualPetsAmok
             Console.WriteLine("\nYou took your pet to the Vet!");
 
             // Good
-            if (Health < 100)
+            if (Sickness > 0)
             {
-                Health = 100;
-                Console.WriteLine(Name + "'s HEALTH has been restored! :)");
+                Sickness = 0;
+                Console.WriteLine(Name + "'s SICKNESS has been cured! :)");
             }
 
             // Bad
-            if (Happiness > 0)
+            if (Unhappiness < 100)
             {
-                Happiness -= 10;
-                Console.WriteLine(Name + "'s HAPPINESS dropped! :(");
+                Unhappiness += 10;
+                Console.WriteLine(Name + "'s UNHAPPINESS rose! :(");
             }
 
             // Bad
@@ -149,30 +149,30 @@ namespace VirtualPetsAmok
             {
                 Hunger += 10;
             }
-            else if (Hunger == 100 && Health > 0)
+            else if (Hunger == 100 && Sickness < 100)
             {
-                Health -= 10;
+                Sickness += 10;
             }
 
-            if (Happiness > 0)
+            if (Unhappiness < 100)
             {
-                Happiness -= 10;
+                Unhappiness += 10;
             }
-            else if (Happiness == 0 && Health > 0)
+            else if (Unhappiness == 100 && Sickness < 100)
             {
-                Health -= 10;
+                Sickness += 10;
             }
 
             if (Boredom < 100)
             {
                 Boredom += 10;
             }
-            else if (Boredom == 100 && Health > 0)
+            else if (Boredom == 100 && Sickness < 100)
             {
-                Health -= 10;
+                Sickness += 10;
             }
 
-            if (Health == 0)
+            if (Sickness == 100)
             {
                 Console.WriteLine("\nEmergency! Take your pet to the vet immediately!");
             }

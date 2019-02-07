@@ -22,13 +22,27 @@ namespace VirtualPetsAmok
             Console.WriteLine("What do you want to name your pet?");
 
             string name = Console.ReadLine();
-
-            Console.WriteLine("What type of pet would you like, Organic or Robotic?");
-            string temp = Console.ReadLine().ToLower().Remove(1);
-
-            
-            string type;
             bool error = false;
+            string temp = "";
+
+            do
+            {
+                Console.WriteLine("What type of pet would you like, Organic or Robotic?");
+                temp = Console.ReadLine().ToLower().Remove(1);
+
+                if (temp != "o" && temp != "r")
+                {
+                    error = true;
+                }
+                else
+                {
+                    error = false;
+                }
+
+            } while (error);
+
+
+            string type;
 
             do
             {
